@@ -1,0 +1,4 @@
+
+> @terragon/mcp-server@0.0.1 build C:\Users\sunco\OneDrive\Desktop\Endemic\terragon-oss\packages\mcp-server
+> tsc && node scripts/build.mjs
+

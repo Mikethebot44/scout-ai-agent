@@ -1,0 +1,9 @@
+
+> @terragon/sandbox-image@0.0.1 build C:\Users\sunco\OneDrive\Desktop\Endemic\terragon-oss\packages\sandbox-image
+> esbuild src/index.ts --bundle --platform=node --target=node20 --format=esm --outfile=dist/index.js --sourcemap
+
+
+  dist\index.js      257.6kb
+  dist\index.js.map  431.7kb
+
+Done in 1176ms
