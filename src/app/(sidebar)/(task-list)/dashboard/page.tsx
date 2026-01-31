@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Dashboard | Scout",
 };
 
-export const maxDuration = 800;
+export const maxDuration = 299;
 
 export default async function DashboardPage({
   searchParams,

@@ -7,7 +7,7 @@ import { OG_IMAGE_URL } from "@/lib/constants";
 import { db } from "@/lib/db";
 import { getFeatureFlagsGlobal } from "@scout/shared/model/feature-flags";
 
-export const maxDuration = 800;
+export const maxDuration = 299;
 
 export const metadata: Metadata = {
   title: "Scout - Delegate coding tasks to AI background agents",
