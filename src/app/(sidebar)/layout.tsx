@@ -2,6 +2,8 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { NotificationProvider } from "@/components/system/notification-provider";
 import { getUserIdOrNull } from "@/lib/auth-server";
 
+export const dynamic = "force-dynamic";
+
 export default async function SidebarLayout({
   children,
 }: {

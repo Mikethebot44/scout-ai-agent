@@ -1,6 +1,8 @@
 import { SettingsLayout } from "@/components/settings/settings-layout";
 import { getUserIdOrRedirect } from "@/lib/auth-server";
 
+export const dynamic = "force-dynamic";
+
 export default async function Layout({
   children,
 }: {

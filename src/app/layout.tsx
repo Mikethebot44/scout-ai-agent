@@ -6,6 +6,8 @@ import { Cabin, Geist, Geist_Mono } from "next/font/google";
 import { ServerProviders } from "@/components/system/server-providers";
 import { KonamiVideo } from "@/components/konami-video";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Scout",
   description: "AI-powered coding assistant platform",
