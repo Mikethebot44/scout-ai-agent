@@ -537,8 +537,6 @@ async function preparePromptForModel({
       break;
     }
     case "amp":
-    case "gemini":
-    case "opencode":
     case "claudeCode": {
       prompt = await promptWithMessageToSendOnly();
       break;

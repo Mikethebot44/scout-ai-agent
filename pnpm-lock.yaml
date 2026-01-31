@@ -33,8 +33,11 @@ importers:
         specifier: 1.2.0-beta.4
         version: 1.2.0-beta.4
       '@git-diff-view/core':
-        specifier: ^0.0.35
-        version: 0.0.35
+        specifier: ^0.0.36
+        version: 0.0.36
+      '@git-diff-view/react':
+        specifier: ^0.0.36
+        version: 0.0.36(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.60.0(react@19.1.2))
@@ -104,12 +107,6 @@ importers:
       '@radix-ui/react-visually-hidden':
         specifier: ^1.2.3
         version: 1.2.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
-      '@tanstack/react-query':
-        specifier: ^5.76.1
-        version: 5.76.1(react@19.1.2)
-      '@tanstack/react-table':
-        specifier: ^8.21.3
-        version: 8.21.3(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
       '@scout/agent':
         specifier: workspace:*
         version: link:packages/agent
@@ -146,6 +143,12 @@ importers:
       '@scout/utils':
         specifier: workspace:*
         version: link:packages/utils
+      '@tanstack/react-query':
+        specifier: ^5.76.1
+        version: 5.76.1(react@19.1.2)
+      '@tanstack/react-table':
+        specifier: ^8.21.3
+        version: 8.21.3(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
       '@tiptap/extension-link':
         specifier: ^2.14.0
         version: 2.14.0(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)
@@ -339,18 +342,18 @@ importers:
       '@ladle/react':
         specifier: ^5.0.3
         version: 5.0.3(@types/node@24.0.1)(@types/react@19.1.8)(acorn@8.15.0)(jiti@2.4.2)(lightningcss@1.30.1)(react-dom@19.1.2(react@19.1.2))(react@19.1.2)(terser@5.40.0)(tsx@4.20.3)(typescript@5.8.3)(yaml@2.8.0)
-      '@slack/web-api':
-        specifier: ^7.10.0
-        version: 7.10.0
-      '@tailwindcss/postcss':
-        specifier: ^4.1.10
-        version: 4.1.10
       '@scout/dev-env':
         specifier: workspace:*
         version: link:packages/dev-env
       '@scout/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
+      '@slack/web-api':
+        specifier: ^7.10.0
+        version: 7.10.0
+      '@tailwindcss/postcss':
+        specifier: ^4.1.10
+        version: 4.1.10
       '@types/node':
         specifier: 24.0.1
         version: 24.0.1
@@ -2061,11 +2064,17 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@git-diff-view/core@0.0.35':
-    resolution: {integrity: sha512-cdH3BopR6AWUW+6hP78zGyryKxR9JkPgryd1JN78i5k+F9Eo4x/4S23ZF1VZnrpPlGLrSuYfiAZ0ho5m+pTuKg==}
+  '@git-diff-view/core@0.0.36':
+    resolution: {integrity: sha512-A3mN21C/ZdIJz0J9/PSZvLR1dLBu8BG13tVE+w4A9v8dLS5omkoQVjHM9K5GaoJideMhK/11y6V7CMbMXCPQoQ==}
 
-  '@git-diff-view/lowlight@0.0.35':
-    resolution: {integrity: sha512-MVpOxrNn1oHVOTOWUjxLbbf1W4OtVHjj6CHxwJbBRg9ZWZdShBINjuEgHVMSGB6vZuHKfwruRfXw8XxV3aF8zw==}
+  '@git-diff-view/lowlight@0.0.36':
+    resolution: {integrity: sha512-8H3fUfnW+jw8EEbhEOr0vq5jXxZfbhNgvf9ruY6GljQdymj8j2R69k83gwMB/GltWEMt5o5624d8MxD21vqsZA==}
+
+  '@git-diff-view/react@0.0.36':
+    resolution: {integrity: sha512-RqM4vkU2uoiav8di5LavR8UDkSP+fNDftlNOfAMQmcuLDFpDnLhtqcgot4+Q5rflkwK04UlYL6G72ps9XSGgDw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   '@google-cloud/common@5.0.2':
     resolution: {integrity: sha512-V7bmBKYQyu0eVG2BFejuUjlBt+zrya6vtsKdY+JxMM/dNntPF41vZ9+LhOshEUH01zOHEqBSvI7Dad7ZS6aUeA==}
@@ -5229,6 +5238,12 @@ packages:
 
   '@vitest/utils@3.1.4':
     resolution: {integrity: sha512-yriMuO1cfFhmiGc8ataN51+9ooHRuURdfAZfwFd3usWynjzpLslZdYnRegTv32qdgtJTsj15FoeZe2g15fY1gg==}
+
+  '@vue/reactivity@3.5.27':
+    resolution: {integrity: sha512-vvorxn2KXfJ0nBEnj4GYshSgsyMNFnIQah/wczXlsNXt+ijhugmW+PpJ2cNPe4V6jpnBcs0MhCODKllWG+nvoQ==}
+
+  '@vue/shared@3.5.27':
+    resolution: {integrity: sha512-dXr/3CgqXsJkZ0n9F3I4elY8wM9jMJpP3pvRG52r6m0tu/MsAFIe6JpXVGeNMd/D9F4hQynWT8Rfuj0bdm9kFQ==}
 
   '@xterm/addon-fit@0.10.0':
     resolution: {integrity: sha512-UFYkDm4HUahf2lnEyHvio51TNGiLK66mqP2JoATy7hRZeXaGMRDr00JiSF7m63vR5WKATF605yEggJKsw0JpMQ==}
@@ -8974,6 +8989,11 @@ packages:
     resolution: {integrity: sha512-MdWVitvLbQULD+4DP8GYjZUrepGW7d+GQkNVqJEzNxE+e9WIa4egVFE/RDfVb1u9u/Jw7dNMmPB4IqxzbFYJ0w==}
     engines: {node: '>=0.10.0'}
 
+  reactivity-store@0.3.12:
+    resolution: {integrity: sha512-Idz9EL4dFUtQbHySZQzckWOTUfqjdYpUtNW0iOysC32mG7IjiUGB77QrsyR5eAWBkRiS9JscF6A3fuQAIy+LrQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   read-package-up@11.0.0:
     resolution: {integrity: sha512-MbgfoNPANMdb4oRBNg5eqLbB2t2r+o5Ua1pNt8BqGp4I0FJZhuVSOj3PaBPni4azWuSzEdNn2evevzVmEk1ohQ==}
     engines: {node: '>=18'}
@@ -11723,18 +11743,30 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@git-diff-view/core@0.0.35':
+  '@git-diff-view/core@0.0.36':
     dependencies:
-      '@git-diff-view/lowlight': 0.0.35
+      '@git-diff-view/lowlight': 0.0.36
       fast-diff: 1.3.0
       highlight.js: 11.11.1
       lowlight: 3.3.0
 
-  '@git-diff-view/lowlight@0.0.35':
+  '@git-diff-view/lowlight@0.0.36':
     dependencies:
       '@types/hast': 3.0.4
       highlight.js: 11.11.1
       lowlight: 3.3.0
+
+  '@git-diff-view/react@0.0.36(react-dom@19.1.2(react@19.1.2))(react@19.1.2)':
+    dependencies:
+      '@git-diff-view/core': 0.0.36
+      '@types/hast': 3.0.4
+      fast-diff: 1.3.0
+      highlight.js: 11.11.1
+      lowlight: 3.3.0
+      react: 19.1.2
+      react-dom: 19.1.2(react@19.1.2)
+      reactivity-store: 0.3.12(react@19.1.2)
+      use-sync-external-store: 1.6.0(react@19.1.2)
 
   '@google-cloud/common@5.0.2(encoding@0.1.13)':
     dependencies:
@@ -15492,6 +15524,12 @@ snapshots:
       '@vitest/pretty-format': 3.1.4
       loupe: 3.1.3
       tinyrainbow: 2.0.0
+
+  '@vue/reactivity@3.5.27':
+    dependencies:
+      '@vue/shared': 3.5.27
+
+  '@vue/shared@3.5.27': {}
 
   '@xterm/addon-fit@0.10.0(@xterm/xterm@5.5.0)':
     dependencies:
@@ -19888,6 +19926,13 @@ snapshots:
       react-dom: 19.1.2(react@19.1.2)
 
   react@19.1.2: {}
+
+  reactivity-store@0.3.12(react@19.1.2):
+    dependencies:
+      '@vue/reactivity': 3.5.27
+      '@vue/shared': 3.5.27
+      react: 19.1.2
+      use-sync-external-store: 1.6.0(react@19.1.2)
 
   read-package-up@11.0.0:
     dependencies:

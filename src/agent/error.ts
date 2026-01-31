@@ -37,7 +37,6 @@ export const allThreadErrors: Record<ThreadErrorType, boolean> = {
   "sandbox-not-found": true,
   "sandbox-creation-failed": true,
   "sandbox-resume-failed": true,
-  "missing-gemini-credentials": true,
   "missing-amp-credentials": true,
   "chatgpt-sub-required": true,
   "invalid-codex-credentials": true,

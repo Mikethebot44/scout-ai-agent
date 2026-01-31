@@ -1042,27 +1042,27 @@ describe("daemon", () => {
     expect(customErrorsAfter).toHaveLength(1);
   });
 
-  it("should include the Gemini session id in the success result message", async () => {
+  it("should include the session id in the success result message", async () => {
     await daemon.start();
 
-    const geminiMessage: DaemonMessageClaude = {
+    const claudeMessage: DaemonMessageClaude = {
       ...TEST_INPUT_MESSAGE,
-      agent: "gemini",
-      model: "gemini-2.5-pro",
+      agent: "claudeCode",
+      model: "sonnet",
     };
 
     await writeToUnixSocket({
       unixSocketPath: runtime.unixSocketPath,
-      dataStr: JSON.stringify(geminiMessage),
+      dataStr: JSON.stringify(claudeMessage),
     });
     await sleepUntil(() => spawnCommandLineMock.mock.calls.length === 1);
 
-    // Simulate Gemini sending an INIT event with session_id
+    // Simulate Claude sending an INIT event with session_id
     const initEvent = {
       type: "init",
       timestamp: new Date().toISOString(),
-      session_id: "gemini-session-12345",
-      model: "gemini-2.5-pro",
+      session_id: "claude-session-12345",
+      model: "sonnet",
     };
     mockSpawnCommandStdoutLine(initEvent);
 
@@ -1071,7 +1071,7 @@ describe("daemon", () => {
       type: "message",
       timestamp: new Date().toISOString(),
       role: "assistant",
-      content: "Hello from Gemini",
+      content: "Hello from Claude",
       delta: false,
     };
     mockSpawnCommandStdoutLine(messageEvent);
@@ -1100,55 +1100,51 @@ describe("daemon", () => {
     const initMessage = messages.find(
       (msg: any) => msg.type === "system" && msg.subtype === "init",
     );
-    expect(initMessage?.session_id).toBe("gemini-session-12345");
+    expect(initMessage?.session_id).toBe("claude-session-12345");
   });
 
-  it("should parse and handle Opencode JSON output", async () => {
+  it("should parse and handle Codex JSON output", async () => {
     await daemon.start();
-    const opencodeMessage: DaemonMessageClaude = {
+    const codexMessage: DaemonMessageClaude = {
       ...TEST_INPUT_MESSAGE,
-      agent: "opencode",
-      model: "opencode/grok-code",
+      agent: "codex",
+      model: "gpt-5",
     };
 
     await writeToUnixSocket({
       unixSocketPath: runtime.unixSocketPath,
-      dataStr: JSON.stringify(opencodeMessage),
+      dataStr: JSON.stringify(codexMessage),
     });
     await sleepUntil(() => spawnCommandLineMock.mock.calls.length === 1);
 
     expect(spawnCommandLineMock).toHaveBeenCalledTimes(1);
-    const opencodeCommand = spawnCommandLineMock.mock.calls[0]![0];
-    expect(
-      opencodeCommand.replace(/\/tmp\/.*.txt/, "<txt>"),
-    ).toMatchInlineSnapshot(
-      `"cat <txt> | opencode run --model terry/grok-code --format json"`,
-    );
+    const codexCommand = spawnCommandLineMock.mock.calls[0]![0];
+    expect(codexCommand).toContain("codex");
 
-    // Simulate Opencode sending a step_start event
+    // Simulate Codex sending a step_start event
     const stepStartEvent = {
       type: "step_start",
       timestamp: Date.now(),
-      sessionID: "opencode-session-123",
+      sessionID: "codex-session-123",
       part: {
         id: "step-1",
         type: "step-start",
-        sessionID: "opencode-session-123",
+        sessionID: "codex-session-123",
         messageID: "msg-1",
       },
     };
     mockSpawnCommandStdoutLine(stepStartEvent);
 
-    // Simulate Opencode sending a text event
+    // Simulate Codex sending a text event
     const textEvent = {
       type: "text",
       timestamp: Date.now(),
-      sessionID: "opencode-session-123",
+      sessionID: "codex-session-123",
       part: {
         id: "text-1",
         type: "text",
-        text: "Hello from Opencode",
-        sessionID: "opencode-session-123",
+        text: "Hello from Codex",
+        sessionID: "codex-session-123",
         messageID: "msg-2",
         time: {
           start: Date.now() - 1000,
@@ -1158,17 +1154,17 @@ describe("daemon", () => {
     };
     mockSpawnCommandStdoutLine(textEvent);
 
-    // Simulate Opencode sending a tool_use event
+    // Simulate Codex sending a tool_use event
     const toolUseEvent = {
       type: "tool_use",
       timestamp: Date.now(),
-      sessionID: "opencode-session-123",
+      sessionID: "codex-session-123",
       part: {
         id: "tool-1",
         type: "tool",
         tool: "bash",
         callID: "call-123",
-        sessionID: "opencode-session-123",
+        sessionID: "codex-session-123",
         messageID: "msg-3",
         state: {
           status: "completed",
@@ -1199,25 +1195,25 @@ describe("daemon", () => {
     expect(allMessages).toHaveLength(4); // system + assistant + assistant + user
   });
 
-  it("should handle Opencode session ID correctly", async () => {
+  it("should handle Codex session ID correctly", async () => {
     await daemon.start();
 
-    const opencodeMessage: DaemonMessageClaude = {
+    const codexMessage: DaemonMessageClaude = {
       ...TEST_INPUT_MESSAGE,
-      agent: "opencode",
-      model: "opencode/grok-code",
+      agent: "codex",
+      model: "gpt-5",
       sessionId: "existing-session-456",
     };
 
     await writeToUnixSocket({
       unixSocketPath: runtime.unixSocketPath,
-      dataStr: JSON.stringify(opencodeMessage),
+      dataStr: JSON.stringify(codexMessage),
     });
     await sleepUntil(() => spawnCommandLineMock.mock.calls.length === 1);
 
-    const opencodeCommand = spawnCommandLineMock.mock.calls[0]![0];
+    const codexCommand = spawnCommandLineMock.mock.calls[0]![0];
     // Should include existing session ID
-    expect(opencodeCommand).toContain("--session existing-session-456");
+    expect(codexCommand).toContain("--session existing-session-456");
   });
 
   describe("Multiple process tracking", () => {

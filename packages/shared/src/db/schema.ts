@@ -8,7 +8,6 @@ import {
   index,
   uniqueIndex,
   AnyPgColumn,
-  numeric,
   bigint,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
@@ -31,12 +30,9 @@ import {
   GithubPRMergeableState,
   GithubCheckStatus,
   ThreadVisibility,
-  UsageEventType,
-  UsageSku,
   ClaudeOrganizationType,
   ThreadSource,
   ThreadSourceMetadata,
-  UserCreditGrantType,
   AgentProviderMetadata,
 } from "./types";
 import {
@@ -498,9 +494,6 @@ export const userSettings = pgTable(
       .notNull()
       .defaultNow()
       .$onUpdate(() => new Date()),
-    autoReloadDisabled: boolean("auto_reload_disabled")
-      .notNull()
-      .default(false),
     agentModelPreferences: jsonb(
       "agent_model_preferences",
     ).$type<AgentModelPreferences>(),
@@ -843,10 +836,6 @@ export const userInfoServerSide = pgTable(
     userId: text("user_id")
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
-    autoReloadLastAttemptAt: timestamp("auto_reload_last_attempt_at"),
-    autoReloadLastFailureAt: timestamp("auto_reload_last_failure_at"),
-    autoReloadLastFailureCode: text("auto_reload_last_failure_code"),
-    stripeCreditPaymentMethodId: text("stripe_credit_payment_method_id"),
   },
   (table) => [
     uniqueIndex("user_info_server_side_user_id_unique").on(table.userId),
@@ -1001,114 +990,6 @@ export const automations = pgTable(
       table.repoFullName,
     ),
     index("automations_next_run_at_index").on(table.nextRunAt),
-  ],
-);
-
-export const userCredits = pgTable(
-  "user_credits",
-  {
-    id: text("id")
-      .primaryKey()
-      .default(sql`gen_random_uuid()`),
-    userId: text("user_id")
-      .notNull()
-      .references(() => user.id, { onDelete: "cascade" }),
-    amountCents: integer("amount_cents").notNull(),
-    description: text("description"),
-    referenceId: text("reference_id"),
-    grantType: text("grant_type").$type<UserCreditGrantType>(),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-  },
-  (table) => [
-    index("user_credits_user_id_index").on(table.userId),
-    uniqueIndex("user_credits_reference_id_unique").on(table.referenceId),
-  ],
-);
-
-export const usageEvents = pgTable(
-  "usage_events",
-  {
-    id: text("id")
-      .primaryKey()
-      .default(sql`gen_random_uuid()`),
-    userId: text("user_id")
-      .notNull()
-      .references(() => user.id, { onDelete: "cascade" }),
-    eventType: text("event_type").$type<UsageEventType>().notNull(),
-    value: numeric("value").notNull(),
-    sku: text("sku").$type<UsageSku>(),
-    // Tokens that are billed at the normal input rate
-    inputTokens: integer("input_tokens"),
-    // Tokens that are billed at the cache hit rate
-    cachedInputTokens: integer("cached_input_tokens"),
-    // Tokens that are billed at the cache creation rate
-    cacheCreationInputTokens: integer("cache_creation_input_tokens"),
-    // Tokens that are billed at the output rate
-    outputTokens: integer("output_tokens"),
-    createdAt: timestamp("created_at").notNull().defaultNow(),
-  },
-  (table) => [
-    index("usage_events_user_id_index").on(table.userId),
-    index("usage_events_user_id_created_at_index").on(
-      table.userId,
-      table.createdAt,
-    ),
-    index("usage_events_user_id_sku_index").on(table.userId, table.sku),
-    // tail-scan & aggregation index
-    index("usage_events_user_sku_type_ts_id_idx").on(
-      table.userId,
-      table.sku,
-      table.eventType,
-      table.createdAt,
-      table.id,
-    ),
-  ],
-);
-
-/**
- * Stores running totals of usage per (user, sku, eventType),
- * plus a (created_at, id) watermark to allow incremental catch-ups.
- */
-export const usageEventsAggCacheSku = pgTable(
-  "usage_events_agg_cache_sku",
-  {
-    id: text("id")
-      .primaryKey()
-      .default(sql`gen_random_uuid()`),
-    userId: text("user_id").notNull(),
-    sku: text("sku").$type<UsageSku>().notNull(),
-    eventType: text("event_type").$type<UsageEventType>().notNull(),
-    inputTokens: bigint("input_tokens", { mode: "bigint" })
-      .notNull()
-      .default(sql`0`),
-    cachedInputTokens: bigint("cached_input_tokens", { mode: "bigint" })
-      .notNull()
-      .default(sql`0`),
-    cacheCreationInputTokens: bigint("cache_creation_input_tokens", {
-      mode: "bigint",
-    })
-      .notNull()
-      .default(sql`0`),
-    outputTokens: bigint("output_tokens", { mode: "bigint" })
-      .notNull()
-      .default(sql`0`),
-    lastUsageTs: timestamp("last_usage_ts", { withTimezone: true }),
-    lastUsageId: text("last_usage_id").references(() => usageEvents.id, {
-      onDelete: "cascade",
-    }),
-    updatedAt: timestamp("updated_at", { withTimezone: true })
-      .notNull()
-      .defaultNow(),
-  },
-  (t) => [
-    // unique per (user, sku, event_type)
-    uniqueIndex("usage_events_agg_cache_sku_user_sku_event_type_unique").on(
-      t.userId,
-      t.sku,
-      t.eventType,
-    ),
-    index("usage_events_agg_cache_sku_user_index").on(t.userId),
-    index("usage_events_agg_cache_sku_user_sku_index").on(t.userId, t.sku),
   ],
 );
 

@@ -5,14 +5,12 @@ import { auth } from "@/lib/auth";
 import { adminOnly, adminOnlyAction } from "@/lib/auth-server";
 import { db } from "@/lib/db";
 import { User, UserFlags } from "@scout/shared";
-import { grantUserCredits } from "@scout/shared/model/credits";
 import { getRecentUsersForAdmin, getUser } from "@scout/shared/model/user";
 import { eq } from "drizzle-orm";
 import * as schema from "@scout/shared/db/schema";
 import { headers } from "next/headers";
 import { updateUserFlags as updateUserFlagsModel } from "@scout/shared/model/user-flags";
 import { sql } from "drizzle-orm";
-import { maybeTriggerCreditAutoReload } from "@/server-lib/credit-auto-reload";
 import { UserFacingError } from "@/lib/server-actions";
 import { forceRefreshClaudeCredentials } from "@/agent/msg/claudeCredentials";
 import { forceRefreshCodexCredentials } from "@/agent/msg/codexCredentials";
@@ -176,37 +174,7 @@ export const setShadowBanUser = adminOnly(
   },
 );
 
-export const topUpUserCredits = adminOnly(
-  async (
-    adminUser: User,
-    {
-      userId,
-      amountCents = 1_000,
-      description,
-    }: {
-      userId: string;
-      amountCents?: number;
-      description?: string;
-    },
-  ) => {
-    console.log("topUpUserCredits", userId, amountCents);
-    const sanitizedAmount = Math.round(Number(amountCents));
-    if (!Number.isFinite(sanitizedAmount)) {
-      throw new Error("Invalid amount");
-    }
-    await grantUserCredits({
-      db,
-      grants: {
-        userId,
-        amountCents: sanitizedAmount,
-        description: description ?? `Admin top-up by ${adminUser.email}`,
-        grantType: "admin_adjustment",
-        referenceId: `admin-user-id:${adminUser.id}:${Date.now()}`,
-      },
-    });
-    return { success: true };
-  },
-);
+
 
 function toCsvValue(value: string | null | undefined): string {
   const str = value ?? "";
@@ -238,15 +206,6 @@ export const exportAllUsersCsv = adminOnly(async function exportAllUsersCsv(
   }
 
   return lines.join("\n");
-});
-
-export const forceCreditAutoReload = adminOnly(async (adminUser: User) => {
-  console.log("forceCreditAutoReload", adminUser.id);
-  await maybeTriggerCreditAutoReload({
-    userId: adminUser.id,
-    balanceCents: 0,
-  });
-  return { success: true };
 });
 
 export const refreshClaudeCredentials = adminOnlyAction(

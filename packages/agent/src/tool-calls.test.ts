@@ -2,9 +2,9 @@ import { describe, it, expect } from "vitest";
 import { normalizeToolCall } from "./tool-calls";
 
 describe("normalizeToolCall", () => {
-  describe("opencode agent", () => {
+  describe("codex agent", () => {
     it("should normalize Todowrite to TodoWrite", () => {
-      const result = normalizeToolCall("opencode", {
+      const result = normalizeToolCall("codex", {
         name: "Todowrite",
         parameters: { todos: [] },
       });
@@ -14,7 +14,7 @@ describe("normalizeToolCall", () => {
     });
 
     it("should normalize Todoread to TodoRead", () => {
-      const result = normalizeToolCall("opencode", {
+      const result = normalizeToolCall("codex", {
         name: "Todoread",
         parameters: {},
       });
@@ -23,7 +23,7 @@ describe("normalizeToolCall", () => {
     });
 
     it("should normalize Websearch to WebSearch", () => {
-      const result = normalizeToolCall("opencode", {
+      const result = normalizeToolCall("codex", {
         name: "Websearch",
         parameters: { query: "test" },
       });
@@ -36,7 +36,7 @@ describe("normalizeToolCall", () => {
       const tools = ["Bash", "Edit", "Glob", "Grep", "List", "Read", "Write"];
 
       for (const toolName of tools) {
-        const result = normalizeToolCall("opencode", {
+        const result = normalizeToolCall("codex", {
           name: toolName,
           parameters: {},
         });
@@ -46,7 +46,7 @@ describe("normalizeToolCall", () => {
     });
 
     it("should preserve result if present", () => {
-      const result = normalizeToolCall("opencode", {
+      const result = normalizeToolCall("codex", {
         name: "Websearch",
         parameters: { query: "test" },
         result: "Search results...",
@@ -114,16 +114,6 @@ describe("normalizeToolCall", () => {
 
       expect(result.name).toBe("Bash");
       expect(result.parameters).toEqual({ command: "ls" });
-    });
-
-    it("should leave tool calls unchanged for gemini agent", () => {
-      const result = normalizeToolCall("gemini", {
-        name: "Read",
-        parameters: { file_path: "/test.ts" },
-      });
-
-      expect(result.name).toBe("Read");
-      expect(result.parameters).toEqual({ file_path: "/test.ts" });
     });
 
     it("should leave tool calls unchanged for codex agent", () => {

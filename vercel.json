@@ -2,10 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
     "src/app/**/*": {
-      "maxDuration": 800
+      "maxDuration": 300
     },
     "app/**/*": {
-      "maxDuration": 800
+      "maxDuration": 300
     }
   },
   "crons": [

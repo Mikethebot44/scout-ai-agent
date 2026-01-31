@@ -22,8 +22,6 @@ import {
 } from "@/lib/subscription-plan-config";
 import { SubscriptionStatus } from "@scout/shared/db/schema";
 import { SignupTrialInfo, SubscriptionInfo } from "@scout/shared/db/types";
-import { useUserCreditBalanceQuery } from "@/queries/user-credit-balance-queries";
-import { CreditsSection } from "../credits";
 import { useServerActionMutation } from "@/queries/server-action-helpers";
 import { publicDocsUrl } from "@scout/env/next-public";
 
@@ -455,11 +453,7 @@ function SubscriptionPlanAction({
   );
 }
 
-export function BillingSettings({
-  hasPaymentMethod,
-}: {
-  hasPaymentMethod: boolean;
-}) {
+export function BillingSettings() {
   const {
     data,
     isLoading,
@@ -475,27 +469,9 @@ export function BillingSettings({
     selectPlan,
     selectPlanPending,
   } = useBillingInfo();
-  const { data: creditBalance, isLoading: isCreditBalanceLoading } =
-    useUserCreditBalanceQuery();
 
   return (
     <div className="flex flex-col gap-8">
-      <SettingsSection
-        label="Credits"
-        description="These credits will be used for agent requests when you don't have a provider account linked."
-      >
-        {isCreditBalanceLoading ? (
-          <div className="flex items-center justify-center gap-2 py-4">
-            <Loader2 className="size-4 animate-spin" /> Loading credit
-            balance...
-          </div>
-        ) : (
-          <CreditsSection
-            creditBalance={creditBalance!}
-            hasPaymentMethod={hasPaymentMethod}
-          />
-        )}
-      </SettingsSection>
       <div className="space-y-4">
         <SettingsSection
           label="Subscription"

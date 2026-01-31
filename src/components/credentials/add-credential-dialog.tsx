@@ -50,25 +50,6 @@ const API_KEY_CONFIGS = {
       </>
     ),
   },
-  gemini: {
-    agent: "gemini" as const,
-    agentName: "Gemini",
-    placeholder: "AIza...",
-    validatePrefix: "AIza",
-    helpText: (
-      <>
-        Enter your Gemini API key to use the Gemini model. Get one at{" "}
-        <a
-          href="https://aistudio.google.com/apikey"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline"
-        >
-          Google AI Studio
-        </a>
-      </>
-    ),
-  },
 } as const satisfies Record<string, ApiKeyConfig>;
 
 // Generic API key dialog for providers that only support API keys
@@ -176,22 +157,6 @@ export function AddAmpCredentialDialog({
       open={open}
       onOpenChange={onOpenChange}
       config={API_KEY_CONFIGS.amp}
-    />
-  );
-}
-
-export function AddGeminiCredentialDialog({
-  open,
-  onOpenChange,
-}: {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}) {
-  return (
-    <AddApiKeyDialog
-      open={open}
-      onOpenChange={onOpenChange}
-      config={API_KEY_CONFIGS.gemini}
     />
   );
 }

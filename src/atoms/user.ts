@@ -69,17 +69,13 @@ export const userSettingsRefetchAtom = atom(null, async (get, set) => {
 });
 
 export const allAgentsAtom = atom<AIAgent[]>((get) => {
-  const featureFlags = get(userFeatureFlagsAtom);
   const allAgentTypes = getAllAgentTypes();
   return allAgentTypes.filter((agent) => {
     switch (agent) {
       case "claudeCode":
       case "codex":
-      case "opencode":
       case "amp":
         return true;
-      case "gemini":
-        return featureFlags.geminiAgent;
       default:
         const _exhaustiveCheck: never = agent;
         console.warn("Unknown agent", _exhaustiveCheck);

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { DiffView, DiffModeEnum } from "@git-diff-view/react";
+import { DiffView, DiffModeEnum, SplitSide } from "@git-diff-view/react";
 import "@git-diff-view/react/styles/diff-view-pure.css";
 import { useTheme } from "next-themes";
 import {
@@ -383,10 +383,8 @@ function FileDiffWrapper({
               diffViewAddWidget={enableComments}
               onAddWidgetClick={
                 enableComments
-                  ? (data) => {
-                      console.log("Widget clicked - full data:", data);
-                      // The library passes the side and lineNumber in renderWidgetLine, not here
-                      // So we'll use a simpler approach - just track if we want to show widgets
+                  ? (lineNumber: number, side: SplitSide) => {
+                      console.log("Widget clicked - full data:", { lineNumber, side });
                     }
                   : undefined
               }

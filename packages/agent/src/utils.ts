@@ -13,10 +13,8 @@ export function ensureAgent(agent: AIAgent | null | undefined): AIAgent {
   if (agent) {
     switch (agent) {
       case "claudeCode":
-      case "gemini":
       case "amp":
       case "codex":
-      case "opencode":
         return agent;
       default: {
         const _exhaustiveCheck: never = agent;
@@ -36,10 +34,6 @@ export function modelToAgent(model: AIModel | null): AIAgent {
     return defaultAgent;
   }
   switch (model) {
-    case "gemini-2.5-pro":
-    case "gemini-3-pro": {
-      return "gemini";
-    }
     case "amp": {
       return "amp";
     }
@@ -74,17 +68,6 @@ export function modelToAgent(model: AIModel | null): AIAgent {
     case "sonnet": {
       return "claudeCode";
     }
-    case "opencode/grok-code":
-    case "opencode/qwen3-coder":
-    case "opencode/kimi-k2":
-    case "opencode/glm-4.6":
-    case "opencode/gemini-2.5-pro":
-    case "opencode/gemini-3-pro":
-    case "opencode-oai/gpt-5":
-    case "opencode-oai/gpt-5-codex":
-    case "opencode-ant/sonnet": {
-      return "opencode";
-    }
     default: {
       const _exhaustiveCheck: never = model;
       console.warn("Unknown model", _exhaustiveCheck);
@@ -100,15 +83,10 @@ export function agentToModels(
   agent: AIAgent | undefined,
   options: {
     agentVersion: number | "latest";
-    enableOpenRouterOpenAIAnthropicModel: boolean;
-    enableOpencodeGemini3ProModelOption: boolean;
   },
 ): AIModel[] {
   agent = agent ?? defaultAgent;
   switch (agent) {
-    case "gemini": {
-      return ["gemini-3-pro", "gemini-2.5-pro"];
-    }
     case "claudeCode": {
       return ["haiku", "sonnet", "opus"];
     }
@@ -152,26 +130,6 @@ export function agentToModels(
       }
       return models;
     }
-    case "opencode": {
-      const models: AIModel[] = [
-        "opencode/glm-4.6",
-        "opencode/kimi-k2",
-        "opencode/grok-code",
-        "opencode/qwen3-coder",
-        "opencode/gemini-2.5-pro",
-      ];
-      if (options.enableOpencodeGemini3ProModelOption) {
-        models.push("opencode/gemini-3-pro");
-      }
-      if (options.enableOpenRouterOpenAIAnthropicModel) {
-        models.push(
-          "opencode-oai/gpt-5",
-          "opencode-oai/gpt-5-codex",
-          "opencode-ant/sonnet",
-        );
-      }
-      return models;
-    }
     default: {
       const _exhaustiveCheck: never = agent;
       console.warn("Unknown agent", _exhaustiveCheck);
@@ -197,10 +155,6 @@ export function getDefaultModelForAgent({
       return "gpt-5-codex-medium";
     case "amp":
       return "amp";
-    case "gemini":
-      return "gemini-3-pro";
-    case "opencode":
-      return "opencode/glm-4.6";
     default:
       const _exhaustiveCheck: never = agent;
       console.warn("Unknown agent", _exhaustiveCheck);
@@ -214,10 +168,7 @@ export function isImageUploadSupported(model: AIModel | null): boolean {
     case "amp":
     case "claudeCode":
     case "codex":
-    case "opencode":
       return true;
-    case "gemini":
-      return false;
     default:
       const _exhaustiveCheck: never = agent;
       console.warn("Unknown agent", _exhaustiveCheck);
@@ -230,9 +181,7 @@ export function isPlanModeSupported(model: AIModel | null): boolean {
   switch (agent) {
     case "claudeCode":
       return true;
-    case "opencode":
     case "codex":
-    case "gemini":
     case "amp":
       return false;
     default:
@@ -248,25 +197,6 @@ export function isConnectedCredentialsSupported(agent: AIAgent): boolean {
     case "codex":
     case "amp":
       return true;
-    case "gemini":
-    case "opencode":
-      return false;
-    default:
-      const _exhaustiveCheck: never = agent;
-      console.warn("Unknown agent", _exhaustiveCheck);
-      return false;
-  }
-}
-
-export function isAgentSupportedForCredits(agent: AIAgent): boolean {
-  switch (agent) {
-    case "claudeCode":
-    case "codex":
-    case "opencode":
-    case "gemini":
-      return true;
-    case "amp":
-      return false;
     default:
       const _exhaustiveCheck: never = agent;
       console.warn("Unknown agent", _exhaustiveCheck);
@@ -277,9 +207,7 @@ export function isAgentSupportedForCredits(agent: AIAgent): boolean {
 const agentDisplayNameMap: Record<AIAgent, string> = {
   claudeCode: "Claude Code",
   codex: "OpenAI Codex",
-  gemini: "Gemini",
   amp: "Amp",
-  opencode: "OpenCode",
 };
 
 export function getAllAgentTypes(): AIAgent[] {
@@ -298,12 +226,8 @@ export function getAgentProviderDisplayName(agent: AIAgent): string {
       return "Claude";
     case "codex":
       return "OpenAI";
-    case "gemini":
-      return "Gemini";
     case "amp":
       return "Amp";
-    case "opencode":
-      return "OpenCode";
     default:
       const _exhaustiveCheck: never = agent;
       console.warn("Unknown agent", _exhaustiveCheck);
@@ -336,18 +260,6 @@ export function getModelDisplayName(model: AIModel): ModelDisplayName {
         fullName: "Haiku 4.5",
         mainName: "Haiku",
         subName: "4.5",
-      };
-    case "gemini-2.5-pro":
-      return {
-        fullName: "Gemini 2.5 Pro",
-        mainName: "Gemini",
-        subName: "2.5 Pro",
-      };
-    case "gemini-3-pro":
-      return {
-        fullName: "Gemini 3 Pro",
-        mainName: "Gemini",
-        subName: "3 Pro",
       };
     case "amp":
       return {
@@ -499,60 +411,6 @@ export function getModelDisplayName(model: AIModel): ModelDisplayName {
         mainName: "GPT-5.2 Codex",
         subName: "X-High",
       };
-    case "opencode/grok-code":
-      return {
-        fullName: "Grok Code Fast 1",
-        mainName: "Grok Code Fast",
-        subName: "1",
-      };
-    case "opencode/qwen3-coder":
-      return {
-        fullName: "Qwen3 Coder 480B",
-        mainName: "Qwen3 Coder",
-        subName: "480B",
-      };
-    case "opencode/kimi-k2":
-      return {
-        fullName: "Kimi K2",
-        mainName: "Kimi K2",
-        subName: null,
-      };
-    case "opencode/glm-4.6":
-      return {
-        fullName: "GLM 4.6",
-        mainName: "GLM",
-        subName: "4.6",
-      };
-    case "opencode/gemini-2.5-pro":
-      return {
-        fullName: "Gemini 2.5 Pro",
-        mainName: "Gemini",
-        subName: "2.5 Pro",
-      };
-    case "opencode/gemini-3-pro":
-      return {
-        fullName: "Gemini 3 Pro",
-        mainName: "Gemini",
-        subName: "3 Pro",
-      };
-    case "opencode-oai/gpt-5":
-      return {
-        fullName: "GPT-5",
-        mainName: "GPT-5",
-        subName: null,
-      };
-    case "opencode-oai/gpt-5-codex":
-      return {
-        fullName: "GPT-5 Codex",
-        mainName: "GPT-5 Codex",
-        subName: null,
-      };
-    case "opencode-ant/sonnet":
-      return {
-        fullName: "Sonnet 4.5",
-        mainName: "Sonnet",
-        subName: "4.5",
-      };
     default:
       const _exhaustiveCheck: never = model;
       console.warn("Unknown model", _exhaustiveCheck);
@@ -581,8 +439,6 @@ export function getAgentModelGroups({
   selectedModels?: AIModel[];
   options: {
     agentVersion: number;
-    enableOpenRouterOpenAIAnthropicModel: boolean;
-    enableOpencodeGemini3ProModelOption: boolean;
   };
 }): AgentModelGroup {
   return {
@@ -644,9 +500,7 @@ export function getAgentSlashCommands(agent: AIAgent): AIAgentSlashCommand[] {
 const agentSortOrder: Record<AIAgent, number> = {
   claudeCode: 0,
   codex: 1,
-  gemini: 2,
-  opencode: 3,
-  amp: 4,
+  amp: 2,
 };
 
 export function sortByAgents(a: AIAgent, b: AIAgent): number {
@@ -659,8 +513,6 @@ export function isAgentEnabledByDefault(agent: AIAgent): boolean {
   switch (agent) {
     case "claudeCode":
     case "codex":
-    case "opencode":
-    case "gemini":
       return true;
     case "amp":
       return false;
@@ -695,21 +547,9 @@ export function isModelEnabledByDefault({
     case "gpt-5-codex-medium":
     case "gpt-5-codex-high":
       return agentVersion !== "latest" && agentVersion < 2;
-    // TODO: Which to deprecate?
-    case "opencode/grok-code":
-    case "opencode/qwen3-coder":
-    case "opencode/gemini-2.5-pro":
-    case "opencode/gemini-3-pro":
-    case "opencode-oai/gpt-5":
-    case "opencode-oai/gpt-5-codex":
-    case "opencode-ant/sonnet":
-      return false;
     case "opus":
     case "sonnet":
     case "haiku":
-      return true;
-    case "gemini-3-pro":
-    case "gemini-2.5-pro":
       return true;
     case "amp":
       return true;
@@ -726,9 +566,6 @@ export function isModelEnabledByDefault({
     case "gpt-5.2-codex-high":
     case "gpt-5.2-codex-xhigh":
       return true;
-    case "opencode/kimi-k2":
-    case "opencode/glm-4.6":
-      return true;
     default:
       const _exhaustiveCheck: never = model;
       console.warn("Unknown model", _exhaustiveCheck);
@@ -741,10 +578,6 @@ export function getAgentInfo(agent: AIAgent): string {
     case "claudeCode":
       return "";
     case "codex":
-      return "";
-    case "opencode":
-      return "OpenCode is an open source agent that allows you to use a wide variety of models.";
-    case "gemini":
       return "";
     case "amp":
       return "Amp is a coding agent built by Sourcegraph.";
@@ -798,20 +631,6 @@ export function parseModelOrNull({
       return "gpt-5.1-codex-medium";
     case "gpt-5.2-codex":
       return "gpt-5.2-codex-medium";
-    case "grok-code":
-      return "opencode/grok-code";
-    case "qwen3-coder":
-      return "opencode/qwen3-coder";
-    case "kimi-k2":
-      return "opencode/kimi-k2";
-    case "glm-4.6":
-      return "opencode/glm-4.6";
-    case "opencode/gpt-5":
-      return "opencode-oai/gpt-5";
-    case "opencode/gpt-5-codex":
-      return "opencode-oai/gpt-5-codex";
-    case "opencode/sonnet":
-      return "opencode-ant/sonnet";
     default:
       const _exhaustiveCheck: never = modelAsExternal;
       console.warn("Unknown model name", _exhaustiveCheck);
@@ -820,26 +639,6 @@ export function parseModelOrNull({
 }
 
 export function normalizedModelForDaemon(model: AIModel): string {
-  // Switch to using the google proxy
-  // For now, just switch gemini-3-pro to the google proxy
-  if (model === "opencode/gemini-3-pro") {
-    return "terry-google/gemini-3-pro";
-  }
-  if (model.startsWith("opencode/")) {
-    return model.replace("opencode/", "terry/");
-  }
-  if (model.startsWith("opencode-google/")) {
-    return model.replace("opencode-google/", "terry-google/");
-  }
-  if (model.startsWith("opencode-oai")) {
-    return model.replace("opencode-oai/", "terry-oai/");
-  }
-  if (model.startsWith("opencode-ant")) {
-    return model.replace("opencode-ant/", "terry-ant/");
-  }
-  if (model === "gemini-3-pro") {
-    return "gemini-3-pro-preview";
-  }
   return model;
 }
 

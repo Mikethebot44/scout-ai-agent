@@ -6,14 +6,10 @@ export const AIModelSchema = z.enum([
   "sonnet",
   "haiku",
 
-  // gemini
-  "gemini-2.5-pro",
-  "gemini-3-pro",
-
   // amp
   "amp",
 
-  // codex
+  // codex (openai)
   "gpt-5",
   "gpt-5-low",
   "gpt-5-high",
@@ -38,17 +34,6 @@ export const AIModelSchema = z.enum([
   "gpt-5.2-codex-medium",
   "gpt-5.2-codex-high",
   "gpt-5.2-codex-xhigh",
-
-  // opencode
-  "opencode/grok-code",
-  "opencode/qwen3-coder",
-  "opencode/kimi-k2",
-  "opencode/glm-4.6",
-  "opencode/gemini-2.5-pro",
-  "opencode/gemini-3-pro",
-  "opencode-oai/gpt-5",
-  "opencode-oai/gpt-5-codex",
-  "opencode-ant/sonnet",
 ]);
 
 // Augment AIModelSchema with simpler names for external usage
@@ -61,25 +46,12 @@ export const AIModelExternalSchema = z.enum([
   "gpt-5.1-codex",
   "gpt-5.1-codex-max-medium",
   "gpt-5.2-codex",
-  "grok-code",
-  "qwen3-coder",
-  "kimi-k2",
-  "glm-4.6",
-  "opencode/gpt-5",
-  "opencode/gpt-5-codex",
-  "opencode/sonnet",
 ]);
 
 export type AIModel = z.infer<typeof AIModelSchema>;
 export type AIModelExternal = z.infer<typeof AIModelExternalSchema>;
 
-export const AIAgentSchema = z.enum([
-  "claudeCode",
-  "gemini",
-  "amp",
-  "codex",
-  "opencode",
-]);
+export const AIAgentSchema = z.enum(["claudeCode", "amp", "codex"]);
 
 export type AIAgent = z.infer<typeof AIAgentSchema>;
 

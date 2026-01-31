@@ -5,7 +5,6 @@ import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { getAdminUserOrThrow } from "@/lib/auth-server";
 import { getThreads } from "@scout/shared/model/threads";
-import { getCachedUserCreditBalance } from "@/server-lib/credit-balance";
 import {
   getFeatureFlags,
   getFeatureFlagsForUser,
@@ -34,7 +33,6 @@ export default async function AdminUserPage({
     featureFlagsArray,
     featureFlagsResolved,
     userFeatureFlagOverrides,
-    userBalance,
     userSettings,
     automations,
     billingInfo,
@@ -46,7 +44,6 @@ export default async function AdminUserPage({
     getFeatureFlags({ db }),
     getFeatureFlagsForUser({ db, userId: id }),
     getUserFeatureFlagOverrides({ db, userId: id }),
-    getCachedUserCreditBalance(id),
     getUserSettings({ db, userId: id }),
     getAutomations({ db, userId: id }),
     getBillingInfoForUser({ userId: id }),
@@ -61,7 +58,6 @@ export default async function AdminUserPage({
       userFeatureFlagOverrides={userFeatureFlagOverrides}
       agentProviderCredentials={agentProviderCredentials}
       recentThreads={recentThreads}
-      userBalance={userBalance}
       userSettings={userSettings}
       billingInfo={billingInfo}
       automations={automations}

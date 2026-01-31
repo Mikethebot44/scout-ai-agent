@@ -16,8 +16,6 @@ import { encryptToken } from "@scout/utils/encryption";
 import { getPostHogServer } from "./posthog-server";
 import { nonLocalhostPublicAppUrl } from "./server-utils";
 import { publicAppUrl } from "@scout/env/next-public";
-import { handleStripeCreditTopUpEvent } from "@/server-lib/stripe-credit-top-ups";
-import { maybeGrantSignupBonus } from "@/server-lib/credits";
 import { handlePromotionCodeCheckoutSessionCompleted } from "./stripe-promotion-codes";
 import Stripe from "stripe";
 import { LoopsClient } from "loops";
@@ -118,7 +116,6 @@ const stripePlugins = (() => {
           event,
           stripeClient,
         });
-        await handleStripeCreditTopUpEvent(event);
       },
     }),
   ] as const;
@@ -231,9 +228,6 @@ export const auth = betterAuth({
           return {
             data: accountWithEncryptedTokens,
           };
-        },
-        after: async (account) => {
-          await maybeGrantSignupBonus({ db, userId: account.userId });
         },
       },
       update: {

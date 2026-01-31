@@ -1,15 +1,13 @@
 import { getAdminUserOrThrow } from "@/lib/auth-server";
 import { db } from "@/lib/db";
 import * as schema from "@scout/shared/db/schema";
-import { inArray, and, gte, countDistinct, eq, sql } from "drizzle-orm";
+import { inArray, and, gte, countDistinct, eq } from "drizzle-orm";
 import { AbuseDetectionTable } from "./table";
 import { getUserListForAdminPage, UserForAdminPage } from "@/server-lib/admin";
-import { BILLABLE_EVENT_TYPES } from "@scout/shared/model/credits";
 
 export interface UserWithSharedRepos extends UserForAdminPage {
   sharedRepos: string[];
   sharedRepoCount: number;
-  totalCreditsCents: number;
 }
 
 export default async function AbuseDetectionPage() {
@@ -47,31 +45,12 @@ export default async function AbuseDetectionPage() {
       ),
     );
 
-  const creditsUsed = await db
-    .select({
-      userId: schema.usageEvents.userId,
-      totalCents: sql<number>`COALESCE(SUM(${schema.usageEvents.value} * 100)::bigint, 0)`,
-    })
-    .from(schema.usageEvents)
-    .innerJoin(schema.user, eq(schema.usageEvents.userId, schema.user.id))
-    .where(
-      and(
-        inArray(schema.usageEvents.eventType, BILLABLE_EVENT_TYPES),
-        inArray(
-          schema.usageEvents.userId,
-          Array.from(new Set(threadsOnSharedRepos.map((t) => t.user.id))),
-        ),
-      ),
-    )
-    .groupBy(schema.usageEvents.userId, schema.user.id);
-
   // Group repos by user
   const userMap = new Map<
     string,
     {
       user: typeof schema.user.$inferSelect;
       repos: Set<string>;
-      totalCreditsCents: number;
     }
   >();
   for (const row of threadsOnSharedRepos) {
@@ -79,15 +58,9 @@ export default async function AbuseDetectionPage() {
       userMap.set(row.user.id, {
         user: row.user,
         repos: new Set(),
-        totalCreditsCents: 0,
       });
     }
     userMap.get(row.user.id)!.repos.add(row.githubRepoFullName);
-  }
-  for (const row of creditsUsed) {
-    if (userMap.has(row.userId)) {
-      userMap.get(row.userId)!.totalCreditsCents = Number(row.totalCents ?? 0);
-    }
   }
 
   const users = Array.from(userMap.values()).map((u) => u.user);
@@ -100,7 +73,6 @@ export default async function AbuseDetectionPage() {
       ...user,
       sharedRepos: repos,
       sharedRepoCount: repos.length,
-      totalCreditsCents: userMap.get(user.id)?.totalCreditsCents ?? 0,
     };
   });
 

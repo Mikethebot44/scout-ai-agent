@@ -18,7 +18,7 @@ const options = {
 describe("model-to-agent", () => {
   describe("modelToAgent and agentToModels consistency", () => {
     it("should have bidirectional consistency between functions", () => {
-      const agents: AIAgent[] = ["claudeCode", "gemini", "amp", "codex"];
+      const agents: AIAgent[] = ["claudeCode", "amp", "codex"];
 
       agents.forEach((agent) => {
         const models = agentToModels(agent, options);
@@ -32,7 +32,6 @@ describe("model-to-agent", () => {
       const modelAgentPairs: [AIModel, AIAgent][] = [
         ["opus", "claudeCode"],
         ["sonnet", "claudeCode"],
-        ["gemini-2.5-pro", "gemini"],
         ["amp", "amp"],
         ["gpt-5-low", "codex"],
         ["gpt-5", "codex"],
@@ -54,9 +53,9 @@ describe("model-to-agent", () => {
 
   describe("sortByAgents", () => {
     it("should sort agents by their order", () => {
-      const agents: AIAgent[] = ["claudeCode", "gemini", "amp", "codex"];
+      const agents: AIAgent[] = ["claudeCode", "amp", "codex"];
       const sortedAgents = agents.sort(sortByAgents);
-      expect(sortedAgents).toEqual(["claudeCode", "codex", "gemini", "amp"]);
+      expect(sortedAgents).toEqual(["claudeCode", "codex", "amp"]);
     });
   });
 

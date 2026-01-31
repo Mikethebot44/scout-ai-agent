@@ -17,20 +17,10 @@ import {
   claudeCommand,
 } from "./claude";
 import {
-  geminiCommand,
-  parseGeminiLine,
-  createGeminiParserState,
-} from "./gemini";
-import {
   MessageBufferEntry,
   killProcessGroup,
   createIdleWatchdog,
 } from "./utils";
-import {
-  opencodeCommand,
-  getOpencodeApiKeyOrNull,
-  parseOpencodeLine,
-} from "./opencode";
 import { ampCommand, getAmpApiKeyOrNull } from "./amp";
 import { codexCommand, parseCodexLine } from "./codex";
 import { AgentFrontmatterReader } from "./agent-frontmatter";
@@ -342,12 +332,6 @@ export class ScoutDaemon {
         break;
       case "codex":
         await this.runCodexCommand(input);
-        break;
-      case "gemini":
-        await this.runGeminiCommand(input);
-        break;
-      case "opencode":
-        await this.runOpencodeCommand(input);
         break;
       default: {
         // This ensures we handle all model types exhaustively
@@ -672,58 +656,6 @@ export class ScoutDaemon {
     });
   }
 
-  private async runOpencodeCommand(input: DaemonMessageClaude): Promise<void> {
-    return this.spawnAgentProcess({
-      agentName: "Opencode",
-      input,
-      command: opencodeCommand({
-        runtime: this.runtime,
-        prompt: input.prompt,
-        model: input.model,
-        sessionId: input.sessionId,
-      }),
-      env: {
-        OPENCODE_API_KEY: getOpencodeApiKeyOrNull(this.runtime),
-      },
-      getMockSuccessResult: () => "Opencode successfully completed",
-      onStdoutLine: (line) => {
-        const activeProcessState = this.activeProcesses.get(input.threadChatId);
-        const parsedMessages = parseOpencodeLine({
-          line,
-          runtime: this.runtime,
-          isWorking: !!activeProcessState?.isWorking,
-        });
-        for (const parsedMessage of parsedMessages) {
-          const type = parsedMessage.type;
-          const sessionId = parsedMessage.session_id;
-          if (type === "system" && sessionId) {
-            this.updateActiveProcessState(input.threadChatId, {
-              sessionId,
-              isWorking: true,
-            });
-          } else if (
-            activeProcessState?.sessionId &&
-            (type === "assistant" || type === "user")
-          ) {
-            parsedMessage.session_id = activeProcessState.sessionId;
-          }
-          if (type === "result") {
-            this.updateActiveProcessState(input.threadChatId, {
-              isCompleted: true,
-            });
-          }
-          this.addMessageToBuffer({
-            agent: "opencode",
-            message: parsedMessage,
-            threadId: input.threadId,
-            threadChatId: input.threadChatId,
-            token: input.token,
-          });
-        }
-      },
-    });
-  }
-
   private async runAmpCommand(input: DaemonMessageClaude): Promise<void> {
     return this.spawnAgentProcess({
       agentName: "Amp",
@@ -823,90 +755,10 @@ export class ScoutDaemon {
     });
   }
 
-  private async runGeminiCommand(input: DaemonMessageClaude): Promise<void> {
-    // Create parser state for accumulating deltas
-    const parserState = createGeminiParserState();
-    return this.spawnAgentProcess({
-      agentName: "Gemini",
-      command: geminiCommand({
-        runtime: this.runtime,
-        prompt: input.prompt,
-        model: input.model,
-        sessionId: input.sessionId,
-      }),
-      env: {
-        GOOGLE_GEMINI_BASE_URL: `${this.runtime.normalizedUrl}/api/proxy/google`,
-        GEMINI_API_KEY: input.token,
-      },
-      input,
-      onStdoutLine: (line) => {
-        // Parse the line into ClaudeMessage format
-        const parsedMessages = parseGeminiLine({
-          line,
-          runtime: this.runtime,
-          state: parserState,
-        });
-        const activeProcessState = this.activeProcesses.get(input.threadChatId);
-        for (const parsedMessage of parsedMessages) {
-          const type = parsedMessage.type;
-          const sessionId = parsedMessage.session_id;
-          if (type === "system" && sessionId) {
-            this.updateActiveProcessState(input.threadChatId, {
-              sessionId,
-              isWorking: true,
-            });
-          } else if (
-            activeProcessState?.sessionId &&
-            (type === "assistant" || type === "user")
-          ) {
-            parsedMessage.session_id = activeProcessState.sessionId;
-          }
-          if (type === "result") {
-            this.updateActiveProcessState(input.threadChatId, {
-              isCompleted: true,
-            });
-          }
-          this.addMessageToBuffer({
-            agent: "gemini",
-            message: parsedMessage,
-            threadId: input.threadId,
-            threadChatId: input.threadChatId,
-            token: input.token,
-          });
-        }
-      },
-      onClose: () => {
-        // Flush any remaining accumulated content
-        if (parserState.accumulatedContent) {
-          const activeProcessState = this.activeProcesses.get(
-            input.threadChatId,
-          );
-          this.addMessageToBuffer({
-            agent: "gemini",
-            message: {
-              type: "assistant",
-              message: {
-                role: "assistant",
-                content: [
-                  { type: "text", text: parserState.accumulatedContent },
-                ],
-              },
-              parent_tool_use_id: null,
-              session_id: activeProcessState?.sessionId || "",
-            },
-            threadId: input.threadId,
-            threadChatId: input.threadChatId,
-            token: input.token,
-          });
-        }
-      },
-    });
-  }
-
   private processMessagesForSending(
     entries: MessageBufferEntry[],
   ): MessageBufferEntry[] {
-    if (entries.find((e) => e.agent === "gemini" || e.agent === "codex")) {
+    if (entries.find((e) => e.agent === "codex")) {
       // Check for error results and kill process if needed
       const errorEntry = entries.find(
         (e) => e.message.type === "result" && e.message.is_error,

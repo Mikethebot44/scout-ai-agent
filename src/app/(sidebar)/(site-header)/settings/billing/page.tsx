@@ -7,28 +7,19 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import { billingInfoQueryOptions } from "@/queries/billing-queries";
-import { userCreditBalanceQueryOptions } from "@/queries/user-credit-balance-queries";
-import { getUserInfoServerSide } from "@scout/shared/model/user";
-import { db } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Billing | Scout",
 };
 
 export default async function BillingSettingsPage() {
-  const userId = await getUserIdOrRedirect();
+  await getUserIdOrRedirect();
   // Prefetch billing status so the page has data on first render
   const queryClient = new QueryClient();
-  const [userInfoServerSide] = await Promise.all([
-    getUserInfoServerSide({ db, userId }),
-    queryClient.prefetchQuery(billingInfoQueryOptions()),
-    queryClient.prefetchQuery(userCreditBalanceQueryOptions()),
-  ]);
+  await queryClient.prefetchQuery(billingInfoQueryOptions());
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <BillingSettings
-        hasPaymentMethod={!!userInfoServerSide.stripeCreditPaymentMethodId}
-      />
+      <BillingSettings />
     </HydrationBoundary>
   );
 }

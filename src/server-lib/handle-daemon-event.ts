@@ -34,7 +34,6 @@ import {
   parseClaudeOAuthTokenRevokedMessage,
 } from "@/agent/msg/helpers";
 import { getEligibleQueuedThreadChats } from "./process-queued-thread";
-import { trackUsageEvents } from "./usage-events";
 import { getFeatureFlagForUser } from "@scout/shared/model/feature-flags";
 import { compactThreadChat } from "./compact";
 
@@ -191,13 +190,6 @@ export async function handleDaemonEvent({
       }
     }
   }
-  waitUntil(
-    trackUsageEvents({
-      userId,
-      costUsd,
-      agentDurationMs: durationMs,
-    }),
-  );
   const isThreadFinished = isStop || isDone || isError;
   const statusBeforeUpdate = threadChat.status;
   if (isThreadFinished) {

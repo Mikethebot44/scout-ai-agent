@@ -157,7 +157,6 @@ export type ThreadErrorType =
   | "sandbox-not-found"
   | "sandbox-creation-failed"
   | "sandbox-resume-failed"
-  | "missing-gemini-credentials"
   | "missing-amp-credentials"
   | "chatgpt-sub-required"
   | "invalid-codex-credentials"
@@ -329,47 +328,6 @@ export type AutomationInsert<T = AutomationTriggerType> = Omit<
   triggerType: T;
   triggerConfig: Extract<AutomationTrigger, { type: T }>["config"];
 };
-
-export type UserCreditGrantType =
-  | "signup_bonus"
-  | "stripe_top_up"
-  | "stripe_auto_reload"
-  | "admin_adjustment";
-
-export type UsageEventType =
-  | "claude_cost_usd"
-  | "billable_anthropic_usd"
-  | "sandbox_usage_time_application_ms"
-  | "sandbox_usage_time_agent_ms"
-  | "billable_openai_usd"
-  | "billable_openrouter_usd"
-  | "billable_google_usd";
-
-export type UsageSku =
-  | "openai_responses_gpt_5"
-  | "openai_responses_gpt_5_2"
-  | "anthropic_messages_sonnet"
-  | "anthropic_messages_haiku"
-  | "anthropic_messages_opus"
-  | "anthropic_messages_opus_4_5"
-  | "anthropic_messages_default"
-  | "openrouter_qwen"
-  | "openrouter_grok"
-  | "openrouter_kimi"
-  | "openrouter_glm"
-  | "openrouter_gemini"
-  | "openrouter_gemini_3_pro"
-  | "openrouter_default"
-  | "google_gemini_2_5_pro"
-  | "google_gemini_2_5_flash"
-  | "google_gemini_3_pro"
-  | "google_default";
-
-export type UsageEvent = typeof schema.usageEvents.$inferSelect;
-export type UsageEventInsert = typeof schema.usageEvents.$inferInsert;
-
-export type UserCredit = typeof schema.userCredits.$inferSelect;
-export type UserCreditInsert = typeof schema.userCredits.$inferInsert;
 
 export type UserCredentials = {
   hasClaude: boolean;

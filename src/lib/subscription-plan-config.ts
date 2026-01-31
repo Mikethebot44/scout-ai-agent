@@ -24,8 +24,7 @@ export const SUBSCRIPTION_PLAN_CONFIG: Record<
       "Ideal for individuals who want to orchestrate multiple agents.",
     billingBlurb: "For individuals",
     features: [
-      "Hosted Sandboxes (2 CPU, 4GB RAM)",
-      "3 concurrent tasks",
+      "3 parallel tasks",
       "5 automations",
       "GitHub integration",
       "Slack integration",
@@ -41,14 +40,11 @@ export const SUBSCRIPTION_PLAN_CONFIG: Record<
       "Built for power users who need more throughput and larger sandboxes.",
     billingBlurb: "For power users",
     features: [
-      "Hosted Sandboxes (2 CPU, 4GB RAM)",
-      "10 concurrent tasks",
+      "10 parallel tasks",
       "Unlimited automations",
       "GitHub integration",
       "Slack integration",
-      "Connect ChatGPT or Claude subscription",
-      "Larger Sandboxes (Coming soon)",
-      "REST API access (Coming soon)",
+      "Connect ChatGPT or Claude subscription"
     ],
     badge: "Recommended",
   },

@@ -5,7 +5,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { UserWithSharedRepos } from "./page";
 import Link from "next/link";
 import { format } from "date-fns";
-import { formatUsdFromCents } from "@/lib/currency";
 
 const columns: ColumnDef<UserWithSharedRepos>[] = [
   {
@@ -58,15 +57,6 @@ const columns: ColumnDef<UserWithSharedRepos>[] = [
     accessorKey: "numThreads",
     header: "Total Threads",
     cell: ({ row }) => <div className="text-sm">{row.original.numThreads}</div>,
-  },
-  {
-    accessorKey: "totalCreditsCents",
-    header: "Total Credits Used",
-    cell: ({ row }) => (
-      <div className="text-sm">
-        {formatUsdFromCents(row.original.totalCreditsCents)}
-      </div>
-    ),
   },
   {
     accessorKey: "signupTrialDaysRemaining",

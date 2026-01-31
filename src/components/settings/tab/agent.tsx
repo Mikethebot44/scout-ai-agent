@@ -12,7 +12,6 @@ import {
   AddClaudeCredentialDialog,
   AddCodexCredentialDialog,
   AddAmpCredentialDialog,
-  AddGeminiCredentialDialog,
 } from "@/components/credentials/add-credential-dialog";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -41,7 +40,6 @@ import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AgentIcon } from "@/components/chat/agent-icon";
 import { cn } from "@/lib/utils";
-import { useFeatureFlag } from "@/hooks/use-feature-flag";
 
 export function AgentSettings() {
   const user = useAtomValue(userAtom);
@@ -137,17 +135,7 @@ function AgentProvidersSection() {
           }}
         />
       )}
-      {selectedAgent === "gemini" && (
-        <AddGeminiCredentialDialog
-          open={credentialDialogOpen}
-          onOpenChange={(open) => {
-            setCredentialDialogOpen(open);
-            if (!open) {
-              setSelectedAgent(null);
-            }
-          }}
-        />
-      )}
+
     </div>
   );
 }
@@ -307,16 +295,8 @@ function AgentModelItem({
   isEnabled: boolean;
   onToggle: (enabled: boolean) => void;
 }) {
-  const openCodeOpenAIAnthropicModel = useFeatureFlag(
-    "opencodeOpenAIAnthropicModelOption",
-  );
-  const openCodeGemini3ProModel = useFeatureFlag(
-    "opencodeGemini3ProModelOption",
-  );
   const models = agentToModels(agent, {
     agentVersion: "latest",
-    enableOpenRouterOpenAIAnthropicModel: openCodeOpenAIAnthropicModel,
-    enableOpencodeGemini3ProModelOption: openCodeGemini3ProModel,
   });
   const agentLabel = getAgentDisplayName(agent);
   const agentInfo = getAgentInfo(agent);

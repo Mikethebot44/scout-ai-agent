@@ -42,12 +42,6 @@ export function AgentIcon({
           <OpenAIIcon className="size-4 text-muted-foreground" />
         </span>
       );
-    case "gemini":
-      return (
-        <span className="flex-shrink-0 inline-flex items-center">
-          <Image src="/agents/gemini.png" alt="Gemini" width={18} height={18} />
-        </span>
-      );
     case "claudeCode":
       return (
         <span className="flex-shrink-0 inline-flex items-center">
@@ -56,17 +50,6 @@ export function AgentIcon({
             alt="Claude Code"
             width={16}
             height={16}
-          />
-        </span>
-      );
-    case "opencode":
-      return (
-        <span className="flex-shrink-0 inline-flex items-center">
-          <Image
-            src="/agents/opencode.jpg"
-            alt="Opencode"
-            width={18}
-            height={18}
           />
         </span>
       );

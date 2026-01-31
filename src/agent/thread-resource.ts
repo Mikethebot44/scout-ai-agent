@@ -12,7 +12,6 @@ import { db } from "@/lib/db";
 import { getPostHogServer } from "@/lib/posthog-server";
 import { waitUntil } from "@vercel/functions";
 import { extendSandboxLife } from "@scout/sandbox";
-import { trackUsageEvents } from "@/server-lib/usage-events";
 import { onThreadChatError } from "@/server-lib/thread-status-change";
 
 export async function withThreadChat<T>({
@@ -197,12 +196,6 @@ export async function withThreadSandboxSession<T>({
                   durationMs: usageDuration,
                 },
               });
-              waitUntil(
-                trackUsageEvents({
-                  userId,
-                  applicationDurationMs: usageDuration,
-                }),
-              );
             }
             waitUntil(
               maybeHibernateSandbox({

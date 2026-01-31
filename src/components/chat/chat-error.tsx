@@ -139,25 +139,6 @@ function ChatContent({
         />
       );
     }
-    case "missing-gemini-credentials": {
-      return (
-        <ChatErrorContents
-          header="Gemini API key required"
-          body={
-            <>
-              Please add your Gemini API key to continue. Go to{" "}
-              <Link
-                href="/settings/agent#agent-providers"
-                className="underline"
-              >
-                settings
-              </Link>{" "}
-              to add your API key.
-            </>
-          }
-        />
-      );
-    }
     case "missing-amp-credentials": {
       return (
         <ChatErrorContents

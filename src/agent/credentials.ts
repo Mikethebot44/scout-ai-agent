@@ -77,12 +77,6 @@ export async function getAndVerifyCredentials({
         type: "built-in-credits",
       };
     }
-    case "gemini":
-    case "opencode": {
-      return {
-        type: "built-in-credits",
-      };
-    }
     default: {
       const _exhaustiveCheck: never = agent;
       throw new Error(`Unknown agent: ${_exhaustiveCheck}`);

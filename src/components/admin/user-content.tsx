@@ -8,7 +8,6 @@ import { ConnectionStatusPill } from "../credentials/connection-status-pill";
 import type { AgentProviderCredentialsMap } from "@/server-lib/credentials";
 import {
   resetUserOnboarding,
-  topUpUserCredits,
   updateUserFlags,
   refreshClaudeCredentials,
   refreshCodexCredentials,
@@ -35,9 +34,8 @@ import { BanUserAction } from "./ban-user-action";
 import { ShadowBanUserToggle } from "./shadow-ban-user-toggle";
 import { DeleteUserAction } from "./delete-user-action";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useCallback, useState, useTransition } from "react";
+import { useCallback } from "react";
 import { AdminThreadsTable } from "./threads-list";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePageBreadcrumbs } from "@/hooks/usePageBreadcrumbs";
@@ -79,19 +77,7 @@ const userFlagNullableKeys: (keyof UserFlags)[] = [
   "selectedRepo",
 ];
 
-type UserBalanceSummary = {
-  totalCreditsCents: number;
-  totalUsageCents: number;
-  balanceCents: number;
-};
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
-const formatUsd = (valueInCents: number) =>
-  currencyFormatter.format(Math.round(valueInCents) / 100);
 
 type FeatureFlagWithResolvedValue = FeatureFlag & {
   userOverride: boolean | null;
@@ -107,7 +93,6 @@ export function AdminUserContent({
   featureFlagsArray,
   featureFlagsResolved,
   userFeatureFlagOverrides,
-  userBalance,
   userSettings,
   billingInfo,
   slackAccounts,
@@ -120,17 +105,11 @@ export function AdminUserContent({
   agentProviderCredentials: AgentProviderCredentialsMap;
   recentThreads?: ThreadInfo[];
   automations: Automation[];
-  userBalance: UserBalanceSummary;
   userSettings: UserSettings;
   billingInfo: BillingInfo;
   slackAccounts: SlackAccountWithMetadata[];
 }) {
   const router = useRouter();
-  const [isTopUpPending, startTopUpTransition] = useTransition();
-  const [topUpAmount, setTopUpAmount] = useState("10");
-  const balanceLabel = formatUsd(userBalance.balanceCents);
-  const totalCreditsLabel = formatUsd(userBalance.totalCreditsCents);
-  const totalUsageLabel = formatUsd(userBalance.totalUsageCents);
   usePageBreadcrumbs([
     { label: "Admin", href: "/internal/admin" },
     { label: "Users", href: "/internal/admin/user" },
@@ -153,26 +132,6 @@ export function AdminUserContent({
     },
     [router, searchParams, user.id],
   );
-
-  const handleTopUpCredits = () => {
-    const amountInDollars = parseFloat(topUpAmount);
-    if (isNaN(amountInDollars) || amountInDollars <= 0) {
-      toast.error("Please enter a valid amount");
-      return;
-    }
-    const amountCents = Math.round(amountInDollars * 100);
-    startTopUpTransition(() => {
-      topUpUserCredits({ userId: user.id, amountCents })
-        .then(() => {
-          toast.success(`${formatUsd(amountCents)} of credits added to user`);
-          router.refresh();
-        })
-        .catch((error) => {
-          console.error(error);
-          toast.error("Failed to add credits");
-        });
-    });
-  };
 
   const refreshClaudeCredentialsMutation = useServerActionMutation({
     mutationFn: refreshClaudeCredentials,
@@ -437,40 +396,6 @@ export function AdminUserContent({
           <TabsContent value="actions" className="mt-4">
             <Table>
               <TableBody>
-                <TableRow>
-                  <TableCell className="whitespace-pre-wrap space-y-1">
-                    <div>Add platform credits to this user's balance.</div>
-                    <div className="text-sm text-muted-foreground">
-                      Current balance: {balanceLabel}. Credits issued:{" "}
-                      {totalCreditsLabel}. Usage billed: {totalUsageLabel}.
-                    </div>
-                  </TableCell>
-                  <TableCell className="flex flex-col items-start gap-2">
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center">
-                        <span className="text-sm mr-1">$</span>
-                        <Input
-                          type="number"
-                          step="0.01"
-                          min="0"
-                          value={topUpAmount}
-                          onChange={(e) => setTopUpAmount(e.target.value)}
-                          className="w-24"
-                          disabled={isTopUpPending}
-                        />
-                      </div>
-                      <Button
-                        onClick={handleTopUpCredits}
-                        disabled={isTopUpPending}
-                      >
-                        {isTopUpPending ? "Adding..." : "Add Credits"}
-                      </Button>
-                    </div>
-                    <span className="text-xs text-muted-foreground">
-                      Enter amount in dollars to add to user's balance.
-                    </span>
-                  </TableCell>
-                </TableRow>
                 <TableRow>
                   <TableCell className="whitespace-pre-wrap">
                     Impersonate this user to help debug issues.
