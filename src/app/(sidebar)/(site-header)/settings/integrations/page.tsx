@@ -4,6 +4,8 @@ import { db } from "@/lib/db";
 import { getSlackAccounts } from "@scout/shared/model/slack";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Integrations Settings | Scout",
 };

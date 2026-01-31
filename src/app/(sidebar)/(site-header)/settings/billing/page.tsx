@@ -8,6 +8,8 @@ import {
 } from "@tanstack/react-query";
 import { billingInfoQueryOptions } from "@/queries/billing-queries";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Billing | Scout",
 };

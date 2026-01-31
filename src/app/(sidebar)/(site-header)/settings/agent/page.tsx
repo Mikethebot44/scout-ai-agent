@@ -8,6 +8,8 @@ import {
 } from "@tanstack/react-query";
 import { credentialsQueryOptions } from "@/queries/credentials-queries";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Agent Settings | Scout",
 };
