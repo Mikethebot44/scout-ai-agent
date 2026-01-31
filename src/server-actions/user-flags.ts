@@ -4,10 +4,10 @@ import { userOnlyAction } from "../lib/auth-server";
 import {
   getUserFlags,
   updateUserFlags,
-} from "@terragon/shared/model/user-flags";
+} from "@scout/shared/model/user-flags";
 import { db } from "@/lib/db";
-import type { UserFlags } from "@terragon/shared";
-import type { AIModel, SelectedAIModels } from "@terragon/agent/types";
+import type { UserFlags } from "@scout/shared";
+import type { AIModel, SelectedAIModels } from "@scout/agent/types";
 import { RELEASE_NOTES_VERSION, FEATURE_UPSELL_VERSION } from "@/lib/constants";
 
 export const getUserFlagsAction = userOnlyAction(

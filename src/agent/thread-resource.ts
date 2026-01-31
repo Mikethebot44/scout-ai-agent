@@ -1,17 +1,17 @@
-import { ThreadErrorType, ThreadChat } from "@terragon/shared";
+import { ThreadErrorType, ThreadChat } from "@scout/shared";
 import {
   getThreadChat,
   getThreadMinimal,
-} from "@terragon/shared/model/threads";
+} from "@scout/shared/model/threads";
 import { ThreadError } from "./error";
 import { getSandboxForThreadOrNull, maybeHibernateSandbox } from "./sandbox";
-import { ISandboxSession } from "@terragon/sandbox/types";
+import { ISandboxSession } from "@scout/sandbox/types";
 import { withSandboxResource } from "./sandbox-resource";
 import { updateThreadChatWithTransition } from "./update-status";
 import { db } from "@/lib/db";
 import { getPostHogServer } from "@/lib/posthog-server";
 import { waitUntil } from "@vercel/functions";
-import { extendSandboxLife } from "@terragon/sandbox";
+import { extendSandboxLife } from "@scout/sandbox";
 import { trackUsageEvents } from "@/server-lib/usage-events";
 import { onThreadChatError } from "@/server-lib/thread-status-change";
 

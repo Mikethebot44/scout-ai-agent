@@ -13,14 +13,14 @@ import {
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 import { DBMessage, DBUserMessage } from "./db-message";
-import type { SandboxProvider, SandboxSize } from "@terragon/types/sandbox";
-import type { SandboxStatus, BootingSubstatus } from "@terragon/sandbox/types";
+import type { SandboxProvider, SandboxSize } from "@scout/types/sandbox";
+import type { SandboxStatus, BootingSubstatus } from "@scout/sandbox/types";
 import {
   AIModel,
   AIAgent,
   SelectedAIModels,
   AgentModelPreferences,
-} from "@terragon/agent/types";
+} from "@scout/agent/types";
 import {
   GithubPRStatus,
   GithubCheckRunConclusion,
@@ -469,7 +469,7 @@ export const userSettings = pgTable(
     autoClosePRsOnArchive: boolean("auto_close_draft_prs_on_archive")
       .notNull()
       .default(false),
-    branchNamePrefix: text("branch_name_prefix").notNull().default("terragon/"),
+    branchNamePrefix: text("branch_name_prefix").notNull().default("scout/"),
     prType: text("pr_type")
       .$type<"draft" | "ready">()
       .notNull()

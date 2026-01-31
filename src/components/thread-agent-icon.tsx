@@ -1,6 +1,6 @@
-import { ThreadInfo } from "@terragon/shared";
+import { ThreadInfo } from "@scout/shared";
 import { AgentIcon } from "./chat/agent-icon";
-import { ensureAgent } from "@terragon/agent/utils";
+import { ensureAgent } from "@scout/agent/utils";
 
 export function ThreadAgentIcon({ thread }: { thread: ThreadInfo }) {
   if (thread.threadChats.length === 1) {

@@ -46,7 +46,7 @@ import {
   handleIssueEvent,
 } from "./handlers";
 import { Webhooks } from "@octokit/webhooks";
-import { env } from "@terragon/env/apps-www";
+import { env } from "@scout/env/apps-www";
 
 export async function POST(request: NextRequest) {
   const webhooks = new Webhooks({

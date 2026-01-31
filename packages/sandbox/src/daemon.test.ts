@@ -3,7 +3,7 @@ import { installDaemon } from "./daemon";
 import type { ISandboxSession } from "./types";
 
 // Mock the bundled imports
-vi.mock("@terragon/bundled", () => ({
+vi.mock("@scout/bundled", () => ({
   daemonAsStr: "mock-daemon-content",
   mcpServerAsStr: "mock-mcp-server-content",
 }));
@@ -221,9 +221,9 @@ describe("daemon installation", () => {
         BASH_MAX_TIMEOUT_MS: "60000",
         API_KEY: "secret-key",
         DATABASE_URL: "postgres://localhost",
-        TERRAGON: "true",
+        SCOUT: "true",
         GH_TOKEN: "test-token",
-        TERRAGON_FEATURE_FLAGS: "{}",
+        SCOUT_FEATURE_FLAGS: "{}",
       });
     });
 
@@ -274,7 +274,7 @@ describe("daemon installation", () => {
         featureFlags: {},
       });
 
-      expect(executedCommands).toContain("chmod +x /tmp/terragon-daemon.mjs");
+      expect(executedCommands).toContain("chmod +x /tmp/scout-daemon.mjs");
     });
 
     it("should write all required files", async () => {
@@ -287,7 +287,7 @@ describe("daemon installation", () => {
         featureFlags: {},
       });
 
-      expect(writtenFiles["/tmp/terragon-daemon.mjs"]).toBe(
+      expect(writtenFiles["/tmp/scout-daemon.mjs"]).toBe(
         "mock-daemon-content",
       );
       expect(writtenFiles["/tmp/terry-mcp-server.mjs"]).toBe(

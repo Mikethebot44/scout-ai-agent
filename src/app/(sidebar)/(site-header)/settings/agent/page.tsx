@@ -9,7 +9,7 @@ import {
 import { credentialsQueryOptions } from "@/queries/credentials-queries";
 
 export const metadata: Metadata = {
-  title: "Agent Settings | Terragon",
+  title: "Agent Settings | Scout",
 };
 
 export default async function AgentSettingsPage() {

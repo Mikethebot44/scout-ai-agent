@@ -110,40 +110,40 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
-      '@terragon/agent':
+      '@scout/agent':
         specifier: workspace:*
         version: link:packages/agent
-      '@terragon/bundled':
+      '@scout/bundled':
         specifier: workspace:*
         version: link:packages/bundled
-      '@terragon/cli-api-contract':
+      '@scout/cli-api-contract':
         specifier: workspace:*
         version: link:packages/cli-api-contract
-      '@terragon/daemon':
+      '@scout/daemon':
         specifier: workspace:*
         version: link:packages/daemon
-      '@terragon/env':
+      '@scout/env':
         specifier: workspace:*
         version: link:packages/env
-      '@terragon/r2':
+      '@scout/r2':
         specifier: workspace:*
         version: link:packages/r2
-      '@terragon/sandbox':
+      '@scout/sandbox':
         specifier: workspace:*
         version: link:packages/sandbox
-      '@terragon/sandbox-image':
+      '@scout/sandbox-image':
         specifier: workspace:*
         version: link:packages/sandbox-image
-      '@terragon/shared':
+      '@scout/shared':
         specifier: workspace:*
         version: link:packages/shared
-      '@terragon/transactional':
+      '@scout/transactional':
         specifier: workspace:*
         version: link:packages/transactional
-      '@terragon/types':
+      '@scout/types':
         specifier: workspace:*
         version: link:packages/types
-      '@terragon/utils':
+      '@scout/utils':
         specifier: workspace:*
         version: link:packages/utils
       '@tiptap/extension-link':
@@ -345,10 +345,10 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.1.10
         version: 4.1.10
-      '@terragon/dev-env':
+      '@scout/dev-env':
         specifier: workspace:*
         version: link:packages/dev-env
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
       '@types/node':
@@ -406,7 +406,7 @@ importers:
         specifier: 4.1.11
         version: 4.1.11
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       typescript:
@@ -418,14 +418,14 @@ importers:
 
   packages/bundled:
     dependencies:
-      '@terragon/daemon':
+      '@scout/daemon':
         specifier: workspace:*
         version: link:../daemon
-      '@terragon/mcp-server':
+      '@scout/mcp-server':
         specifier: workspace:*
         version: link:../mcp-server
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       esbuild:
@@ -440,14 +440,14 @@ importers:
       '@orpc/contract':
         specifier: 1.6.0
         version: 1.6.0
-      '@terragon/agent':
+      '@scout/agent':
         specifier: workspace:*
         version: link:../agent
       zod:
         specifier: 4.1.11
         version: 4.1.11
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       typescript:
@@ -456,7 +456,7 @@ importers:
 
   packages/daemon:
     dependencies:
-      '@terragon/agent':
+      '@scout/agent':
         specifier: workspace:*
         version: link:../agent
       nanoid:
@@ -505,11 +505,11 @@ importers:
       '@ngrok/ngrok':
         specifier: ^1.5.1
         version: 1.5.1
-      '@terragon/env':
+      '@scout/env':
         specifier: workspace:*
         version: link:../env
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@types/node':
@@ -534,7 +534,7 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@types/node':
@@ -550,7 +550,7 @@ importers:
         specifier: ^1.0.6
         version: 1.12.1
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@types/node':
@@ -596,19 +596,19 @@ importers:
       '@iarna/toml':
         specifier: ^3.0.0
         version: 3.0.0
-      '@terragon/agent':
+      '@scout/agent':
         specifier: workspace:*
         version: link:../agent
-      '@terragon/bundled':
+      '@scout/bundled':
         specifier: workspace:*
         version: link:../bundled
-      '@terragon/daemon':
+      '@scout/daemon':
         specifier: workspace:*
         version: link:../daemon
-      '@terragon/sandbox-image':
+      '@scout/sandbox-image':
         specifier: workspace:*
         version: link:../sandbox-image
-      '@terragon/utils':
+      '@scout/utils':
         specifier: workspace:*
         version: link:../utils
       nanoid:
@@ -618,10 +618,10 @@ importers:
         specifier: 4.1.11
         version: 4.1.11
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
-      '@terragon/types':
+      '@scout/types':
         specifier: workspace:*
         version: link:../types
       '@types/node':
@@ -643,10 +643,10 @@ importers:
       '@e2b/cli':
         specifier: ^1.5.1
         version: 1.5.1
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
-      '@terragon/types':
+      '@scout/types':
         specifier: workspace:*
         version: link:../types
       '@types/node':
@@ -676,19 +676,19 @@ importers:
       '@octokit/app':
         specifier: ^16.0.1
         version: 16.0.1
-      '@terragon/agent':
+      '@scout/agent':
         specifier: workspace:*
         version: link:../agent
-      '@terragon/daemon':
+      '@scout/daemon':
         specifier: workspace:*
         version: link:../daemon
-      '@terragon/env':
+      '@scout/env':
         specifier: workspace:*
         version: link:../env
-      '@terragon/types':
+      '@scout/types':
         specifier: workspace:*
         version: link:../types
-      '@terragon/utils':
+      '@scout/utils':
         specifier: workspace:*
         version: link:../utils
       ai:
@@ -725,13 +725,13 @@ importers:
       '@octokit/types':
         specifier: ^14.0.0
         version: 14.0.0
-      '@terragon/dev-env':
+      '@scout/dev-env':
         specifier: workspace:*
         version: link:../dev-env
-      '@terragon/sandbox':
+      '@scout/sandbox':
         specifier: workspace:*
         version: link:../sandbox
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@types/node':
@@ -758,7 +758,7 @@ importers:
       '@react-email/components':
         specifier: 0.1.1
         version: 0.1.1(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       react:
@@ -786,7 +786,7 @@ importers:
         specifier: 4.1.11
         version: 4.1.11
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@types/node':
@@ -798,7 +798,7 @@ importers:
 
   packages/utils:
     devDependencies:
-      '@terragon/tsconfig':
+      '@scout/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@types/node':

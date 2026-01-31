@@ -12,10 +12,10 @@ import { nanoid } from "nanoid/non-secure";
 const HOME_DIR = "root";
 const DEFAULT_DIR = `/${HOME_DIR}`;
 const REPO_DIR = "repo";
-const BASE_IMAGE = "ghcr.io/terragon-labs/containers-test";
+const BASE_IMAGE = "ghcr.io/scout-labs/containers-test";
 const SLEEP_MS = 60 * 60 * 1000; // 1 hour
 
-const CONTAINER_PREFIX = "terragon-sandbox";
+const CONTAINER_PREFIX = "scout-sandbox";
 const TEST_CONTAINER_PREFIX = `${CONTAINER_PREFIX}-test`;
 
 class DockerSession implements ISandboxSession {
@@ -317,12 +317,12 @@ export class DockerProvider implements ISandboxProvider {
   }
 
   /**
-   * Cleanup utility function to remove all Terragon containers
+   * Cleanup utility function to remove all Scout containers
    * Useful for complete system cleanup
    */
   static async cleanupAllContainers(): Promise<void> {
     try {
-      // Get all containers with any terragon prefix
+      // Get all containers with any scout prefix
       const listCommand = `docker ps -a --filter "name=${CONTAINER_PREFIX}" --format "{{.Names}}"`;
       const containerList = execSync(listCommand, { encoding: "utf8" }).trim();
       if (!containerList) {
@@ -335,7 +335,7 @@ export class DockerProvider implements ISandboxProvider {
       const removeCommand = `docker rm -f ${containers.join(" ")}`;
       execSync(removeCommand, { stdio: "ignore" });
     } catch (error) {
-      console.warn("Failed to cleanup Terragon containers:", error);
+      console.warn("Failed to cleanup Scout containers:", error);
     }
   }
 }

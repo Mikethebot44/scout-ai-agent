@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { buildOpencodeConfig, getModelId } from "./opencode-config";
-import { agentToModels } from "@terragon/agent/utils";
-import { validateProviderModel } from "@terragon/agent/proxy";
+import { agentToModels } from "@scout/agent/utils";
+import { validateProviderModel } from "@scout/agent/proxy";
 
 describe("buildOpencodeConfig", () => {
   it("should build a valid opencode config", () => {
     const config = buildOpencodeConfig({
-      publicUrl: "https://www.terragonlabs.com",
+      publicUrl: "https://www.scoutlabs.com",
       userMcpConfig: {
         mcpServers: {
           terry: {
@@ -41,9 +41,9 @@ describe("buildOpencodeConfig", () => {
         "provider": {
           "terry": {
             "npm": "@ai-sdk/openai-compatible",
-            "name": "Terragon",
+            "name": "Scout",
             "options": {
-              "baseURL": "https://www.terragonlabs.com/api/proxy/openrouter/v1",
+              "baseURL": "https://www.scoutlabs.com/api/proxy/openrouter/v1",
               "headers": {
                 "X-Daemon-Token": "{env:DAEMON_TOKEN}"
               }
@@ -77,9 +77,9 @@ describe("buildOpencodeConfig", () => {
           },
           "terry-google": {
             "npm": "@ai-sdk/google",
-            "name": "Terragon Google",
+            "name": "Scout Google",
             "options": {
-              "baseURL": "https://www.terragonlabs.com/api/proxy/google/v1",
+              "baseURL": "https://www.scoutlabs.com/api/proxy/google/v1",
               "apiKey": "unused",
               "headers": {
                 "X-Daemon-Token": "{env:DAEMON_TOKEN}"
@@ -98,9 +98,9 @@ describe("buildOpencodeConfig", () => {
           },
           "terry-ant": {
             "npm": "@ai-sdk/anthropic",
-            "name": "Terragon Anthropic",
+            "name": "Scout Anthropic",
             "options": {
-              "baseURL": "https://www.terragonlabs.com/api/proxy/anthropic/v1",
+              "baseURL": "https://www.scoutlabs.com/api/proxy/anthropic/v1",
               "apiKey": "unused",
               "headers": {
                 "X-Daemon-Token": "{env:DAEMON_TOKEN}"
@@ -115,9 +115,9 @@ describe("buildOpencodeConfig", () => {
           },
           "terry-oai": {
             "npm": "@ai-sdk/openai",
-            "name": "Terragon OpenAI",
+            "name": "Scout OpenAI",
             "options": {
-              "baseURL": "https://www.terragonlabs.com/api/proxy/openai/v1",
+              "baseURL": "https://www.scoutlabs.com/api/proxy/openai/v1",
               "apiKey": "unused",
               "headers": {
                 "X-Daemon-Token": "{env:DAEMON_TOKEN}"

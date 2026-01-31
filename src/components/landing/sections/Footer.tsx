@@ -23,7 +23,7 @@ export default function Footer() {
             Terms of Service
           </Link>
           <Link
-            href="https://twitter.com/terragonlabs"
+            href="https://twitter.com/scoutlabs"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground transition-colors"
@@ -32,7 +32,7 @@ export default function Footer() {
           </Link>
         </div>
         <div className="text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Terragon Labs Inc. All rights reserved.
+          © {new Date().getFullYear()} Scout Labs Inc. All rights reserved.
         </div>
       </div>
     </footer>

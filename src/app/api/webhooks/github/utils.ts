@@ -1,15 +1,15 @@
-import { env } from "@terragon/env/apps-www";
+import { env } from "@scout/env/apps-www";
 import { Octokit } from "octokit";
 import type { EmitterWebhookEvent } from "@octokit/webhooks";
 import { getOctokitForApp } from "@/lib/github";
 import { formatThreadContext } from "@/server-lib/ext-thread-context";
-import { publicAppUrl } from "@terragon/env/next-public";
-import { AccessInfo } from "@terragon/shared/db/types";
+import { publicAppUrl } from "@scout/env/next-public";
+import { AccessInfo } from "@scout/shared/db/types";
 import { db } from "@/lib/db";
-import { getUserIdByGitHubAccountId } from "@terragon/shared/model/user";
+import { getUserIdByGitHubAccountId } from "@scout/shared/model/user";
 import { getAccessInfoForUser } from "@/lib/subscription";
-import { AIModel } from "@terragon/agent/types";
-import { parseModelOrNull } from "@terragon/agent/utils";
+import { AIModel } from "@scout/agent/types";
+import { parseModelOrNull } from "@scout/agent/utils";
 
 // Check if comment mentions the GitHub app
 export function isAppMentioned(commentBody: string): boolean {
@@ -24,14 +24,14 @@ export function isAppMentioned(commentBody: string): boolean {
 
 /**
  * Extract model name from GitHub comment body.
- * Looks for patterns like "@terragon-labs [sonnet]" or "@terragon-labs [opus]"
+ * Looks for patterns like "@scout-labs [sonnet]" or "@scout-labs [opus]"
  * Returns the model name if valid, null otherwise.
  *
  * Examples:
- * - "@terragon-labs [sonnet] fix this bug" -> "sonnet"
- * - "@terragon-labs [gpt-5] improve code" -> "gpt-5"
- * - "@terragon-labs fix this" -> null
- * - "@terragon-labs [invalid-model]" -> null
+ * - "@scout-labs [sonnet] fix this bug" -> "sonnet"
+ * - "@scout-labs [gpt-5] improve code" -> "gpt-5"
+ * - "@scout-labs fix this" -> null
+ * - "@scout-labs [invalid-model]" -> null
  */
 export function extractModelFromComment({
   commentBody,
@@ -91,7 +91,7 @@ export async function postBillingLinkComment({
   reviewCommentId?: number;
 }): Promise<void> {
   const billingUrl = `${publicAppUrl()}/settings/billing`;
-  const body = `To use Terragon from GitHub, please set up billing here: ${billingUrl}`;
+  const body = `To use Scout from GitHub, please set up billing here: ${billingUrl}`;
 
   if (reviewCommentId) {
     try {

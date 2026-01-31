@@ -18,8 +18,8 @@ import {
 } from "drizzle-orm";
 import { alias } from "drizzle-orm/pg-core";
 import { publishBroadcastUserMessage } from "../broadcast-server";
-import { AGENT_VERSION } from "@terragon/agent/versions";
-import { LEGACY_THREAD_CHAT_ID } from "@terragon/shared/utils/thread-utils";
+import { AGENT_VERSION } from "@scout/agent/versions";
+import { LEGACY_THREAD_CHAT_ID } from "@scout/shared/utils/thread-utils";
 import {
   Thread,
   ThreadInsert,
@@ -34,11 +34,11 @@ import {
   ThreadInfo,
   ThreadChatInsertRaw,
 } from "../db/types";
-import { BroadcastMessageThreadData } from "@terragon/types/broadcast";
+import { BroadcastMessageThreadData } from "@scout/types/broadcast";
 import { sanitizeForJson } from "../utils/sanitize-json";
 import { toUTC, validateTimezone } from "../utils/timezone";
 import { getUser } from "./user";
-import { AIAgent } from "@terragon/agent/types";
+import { AIAgent } from "@scout/agent/types";
 
 type GetThreadsArgs = {
   db: DB;

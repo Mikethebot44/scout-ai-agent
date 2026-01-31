@@ -3,18 +3,18 @@ import {
   getUserIdOrNull,
   getUserIdOrNullFromDaemonToken,
 } from "@/lib/auth-server";
-import { getThread } from "@terragon/shared/model/threads";
+import { getThread } from "@scout/shared/model/threads";
 import { db } from "@/lib/db";
-import { env } from "@terragon/env/apps-www";
+import { env } from "@scout/env/apps-www";
 import {
   getDecryptedEnvironmentVariables,
   getOrCreateEnvironment,
-} from "@terragon/shared/model/environments";
-import { getGitHubUserAccessTokenOrThrow } from "@terragon/shared/model/user";
-import { getEnv } from "@terragon/sandbox/env";
+} from "@scout/shared/model/environments";
+import { getGitHubUserAccessTokenOrThrow } from "@scout/shared/model/user";
+import { getEnv } from "@scout/sandbox/env";
 import { getAndVerifyCredentials } from "@/agent/credentials";
 import { isSandboxTerminalSupported } from "@/lib/sandbox-terminal";
-import { getPrimaryThreadChat } from "@terragon/shared/utils/thread-utils";
+import { getPrimaryThreadChat } from "@scout/shared/utils/thread-utils";
 
 export async function POST(request: Request) {
   const userId =

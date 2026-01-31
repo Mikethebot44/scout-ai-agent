@@ -1,4 +1,4 @@
-import { env } from "@terragon/env/apps-www";
+import { env } from "@scout/env/apps-www";
 import { Redis } from "@upstash/redis";
 
 export const redis = new Redis({

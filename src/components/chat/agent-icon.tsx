@@ -1,4 +1,4 @@
-import { AIAgent } from "@terragon/agent/types";
+import { AIAgent } from "@scout/agent/types";
 import Image from "next/image";
 import { OpenAIIcon } from "../icons/openai";
 

@@ -1,5 +1,5 @@
 {
-  "name": "@terragon/daemon",
+  "name": "@scout/daemon",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -29,7 +29,7 @@
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },
   "dependencies": {
-    "@terragon/agent": "workspace:*",
+    "@scout/agent": "workspace:*",
     "nanoid": "^5.1.5",
     "strip-ansi": "^7.1.0",
     "zod": "4.1.11"

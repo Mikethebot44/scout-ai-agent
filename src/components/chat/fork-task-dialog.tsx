@@ -12,7 +12,7 @@ import type {
   DBUserMessage,
   ThreadChatInfoFull,
   ThreadInfo,
-} from "@terragon/shared";
+} from "@scout/shared";
 import { GenericPromptBox } from "../promptbox/generic-promptbox";
 import { forkThread } from "@/server-actions/fork-thread";
 import { RepoBranchSelector } from "../repo-branch-selector";
@@ -20,7 +20,7 @@ import { PromptBoxToolBelt } from "../promptbox/prompt-box-tool-belt";
 import { useServerActionMutation } from "@/queries/server-action-helpers";
 import { toast } from "sonner";
 import { getLastUserMessageModel } from "@/lib/db-message-helpers";
-import { getDefaultModelForAgent } from "@terragon/agent/utils";
+import { getDefaultModelForAgent } from "@scout/agent/utils";
 import { usePromptBoxToolBeltOptions } from "../promptbox/prompt-box-tool-belt";
 
 export function ForkTaskDialog({

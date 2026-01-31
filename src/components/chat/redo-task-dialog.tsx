@@ -13,7 +13,7 @@ import type {
   DBUserMessage,
   ThreadChatInfoFull,
   ThreadInfo,
-} from "@terragon/shared";
+} from "@scout/shared";
 import { GenericPromptBox } from "../promptbox/generic-promptbox";
 import { redoThread } from "@/server-actions/redo-thread";
 import { RepoBranchSelector } from "../repo-branch-selector";

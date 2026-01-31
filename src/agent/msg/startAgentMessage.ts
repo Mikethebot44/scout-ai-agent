@@ -2,8 +2,8 @@ import {
   DBUserMessage,
   DBUserMessageWithModel,
   Thread,
-} from "@terragon/shared";
-import { DB } from "@terragon/shared/db";
+} from "@scout/shared";
+import { DB } from "@scout/shared/db";
 import {
   getActiveThreadCount,
   activeThreadStatuses,
@@ -12,7 +12,7 @@ import {
   updateThreadChat,
   getThreadChat,
   getThread,
-} from "@terragon/shared/model/threads";
+} from "@scout/shared/model/threads";
 import {
   createSandboxForThread,
   getSandboxForThreadOrNull,
@@ -29,19 +29,19 @@ import {
 } from "@/lib/db-message-helpers";
 import { uploadUserMessageImages } from "@/lib/r2-file-upload-server";
 import { updateThreadChatWithTransition } from "@/agent/update-status";
-import { gitPullUpstream } from "@terragon/sandbox/commands";
+import { gitPullUpstream } from "@scout/sandbox/commands";
 import { getPostHogServer } from "@/lib/posthog-server";
-import { CreateSandboxOptions } from "@terragon/sandbox/types";
+import { CreateSandboxOptions } from "@scout/sandbox/types";
 import { formatThreadToMsg } from "@/lib/thread-to-msg-formatter";
-import { ISandboxSession } from "@terragon/sandbox/types";
-import { AIAgent, AIModel } from "@terragon/agent/types";
+import { ISandboxSession } from "@scout/sandbox/types";
+import { AIAgent, AIModel } from "@scout/agent/types";
 import {
   modelToAgent,
   getDefaultModelForAgent,
   normalizedModelForDaemon,
   isConnectedCredentialsSupported,
   modelRequiresChatGptOAuth,
-} from "@terragon/agent/utils";
+} from "@scout/agent/utils";
 import { handleSlashCommand } from "@/agent/slash-command-handler";
 import { tryAutoCompactThread } from "@/server-lib/compact";
 import { waitUntil } from "@vercel/functions";
@@ -257,7 +257,7 @@ export async function startAgentMessage({
       // Get or create sandbox for the thread
       const startTime = Date.now();
       // We need to provide onStatusUpdate for both new and resumed threads
-      // so the UI can show sandbox setup progress (e.g., "Running terragon-setup.sh")
+      // so the UI can show sandbox setup progress (e.g., "Running scout-setup.sh")
       const onStatusUpdate: CreateSandboxOptions["onStatusUpdate"] = async ({
         sandboxId,
         sandboxStatus,

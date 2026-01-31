@@ -1,10 +1,10 @@
-import { AIModel } from "@terragon/agent/types";
+import { AIModel } from "@scout/agent/types";
 import {
   DBMessage,
   DBUserMessage,
   DBRichTextPart,
   DBSystemMessage,
-} from "@terragon/shared";
+} from "@scout/shared";
 
 import { nanoid } from "nanoid/non-secure";
 

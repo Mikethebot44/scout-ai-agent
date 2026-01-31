@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { normalizeToolCall } from "@terragon/agent/tool-calls";
-import { AllToolParts } from "@terragon/shared";
+import { normalizeToolCall } from "@scout/agent/tool-calls";
+import { AllToolParts } from "@scout/shared";
 import { ReadTool } from "./tools/read-tool";
 import { WriteTool } from "./tools/write-tool";
 import { EditTool } from "./tools/edit-tool";

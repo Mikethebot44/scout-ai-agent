@@ -8,11 +8,11 @@ import {
   BroadcastSandboxMessage,
   type BroadcastUserMessage,
   getBroadcastChannelStr,
-} from "@terragon/types/broadcast";
+} from "@scout/types/broadcast";
 import PartySocket from "partysocket";
 import { useCallback, useEffect, useState } from "react";
-import { publicBroadcastHost } from "@terragon/env/next-public";
-import { SandboxProvider } from "@terragon/types/sandbox";
+import { publicBroadcastHost } from "@scout/env/next-public";
+import { SandboxProvider } from "@scout/types/sandbox";
 
 const usageCountByChannel: Record<string, number> = {};
 const partykitByChannel: Record<string, PartySocket> = {};

@@ -1,6 +1,6 @@
 import { DaemonMessageStop, DaemonMessageClaude } from "./shared";
 import { DaemonRuntime, writeToUnixSocket } from "./runtime";
-import { TerragonDaemon } from "./daemon";
+import { ScoutDaemon } from "./daemon";
 import {
   describe,
   it,
@@ -47,7 +47,7 @@ const TEST_STOP_MESSAGE: DaemonMessageStop = {
 
 describe("daemon", () => {
   let runtime: DaemonRuntime;
-  let daemon: TerragonDaemon;
+  let daemon: ScoutDaemon;
   let killChildProcessGroupMock: MockInstance<
     DaemonRuntime["killChildProcessGroup"]
   >;
@@ -64,7 +64,7 @@ describe("daemon", () => {
         resolvedOptions: () => ({ timeZone: "America/New_York" }),
       })),
     });
-    const unixSocketPath = `/tmp/terragon-daemon-${nanoid()}.sock`;
+    const unixSocketPath = `/tmp/scout-daemon-${nanoid()}.sock`;
     runtime = new DaemonRuntime({
       url: "http://localhost:3000",
       unixSocketPath,
@@ -97,7 +97,7 @@ describe("daemon", () => {
     vi.spyOn(runtime, "appendFileSync").mockImplementation(() => {
       throw new Error("Unexpected call to appendFileSync");
     });
-    daemon = new TerragonDaemon({
+    daemon = new ScoutDaemon({
       runtime,
       messageHandleDelay: 5,
       messageFlushDelay: 10,

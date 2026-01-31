@@ -2,11 +2,11 @@
 
 import { adminOnly } from "@/lib/auth-server";
 import { db } from "@/lib/db";
-import { User } from "@terragon/shared";
+import { User } from "@scout/shared";
 import {
   getFeedbackListForAdmin,
   updateFeedbackStatusForAdmin,
-} from "@terragon/shared/model/feedback";
+} from "@scout/shared/model/feedback";
 
 export const getFeedbackList = adminOnly(async function getFeedbackList() {
   return await getFeedbackListForAdmin({ db });

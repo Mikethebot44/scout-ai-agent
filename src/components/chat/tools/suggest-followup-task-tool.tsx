@@ -1,5 +1,5 @@
 import React from "react";
-import { AllToolParts } from "@terragon/shared";
+import { AllToolParts } from "@scout/shared";
 
 import { Button } from "@/components/ui/button";
 import {

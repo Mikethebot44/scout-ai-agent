@@ -1,20 +1,20 @@
 import { AdminUserContent } from "@/components/admin/user-content";
-import { getUser, getUserSettings } from "@terragon/shared/model/user";
-import { getUserFlags } from "@terragon/shared/model/user-flags";
+import { getUser, getUserSettings } from "@scout/shared/model/user";
+import { getUserFlags } from "@scout/shared/model/user-flags";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { getAdminUserOrThrow } from "@/lib/auth-server";
-import { getThreads } from "@terragon/shared/model/threads";
+import { getThreads } from "@scout/shared/model/threads";
 import { getCachedUserCreditBalance } from "@/server-lib/credit-balance";
 import {
   getFeatureFlags,
   getFeatureFlagsForUser,
   getUserFeatureFlagOverrides,
-} from "@terragon/shared/model/feature-flags";
+} from "@scout/shared/model/feature-flags";
 import { getBillingInfoForUser } from "@/lib/subscription";
-import { getAutomations } from "@terragon/shared/model/automations";
+import { getAutomations } from "@scout/shared/model/automations";
 import { getAgentProviderCredentials } from "@/server-lib/credentials";
-import { getSlackAccounts } from "@terragon/shared/model/slack";
+import { getSlackAccounts } from "@scout/shared/model/slack";
 
 export default async function AdminUserPage({
   params,
