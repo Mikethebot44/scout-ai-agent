@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Check, Copy, Link, RefreshCw, Split } from "lucide-react";
-import { UIMessage } from "@terragon/shared";
+import { UIMessage } from "@scout/shared";
 import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
-import { getModelDisplayName } from "@terragon/agent/utils";
+import { getModelDisplayName } from "@scout/agent/utils";
 import { RedoTaskDialog } from "./redo-task-dialog";
 import { ForkTaskDialog } from "./fork-task-dialog";
 import { useThread } from "./thread-context";

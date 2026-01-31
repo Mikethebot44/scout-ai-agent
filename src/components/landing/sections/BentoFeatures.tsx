@@ -123,7 +123,7 @@ export default function BentoFeatures() {
             icon={<Cloud className="size-4" />}
             label="Runs in the Cloud"
             heading="Work from anywhere"
-            description="Terragon works from your phone and lets you work wherever you are"
+            description="Scout works from your phone and lets you work wherever you are"
             visual={<WorkAnywhere />}
           />
           <FeatureBox

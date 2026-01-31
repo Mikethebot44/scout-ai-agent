@@ -1,9 +1,9 @@
 "use server";
 
-import { updateThreadVisibility } from "@terragon/shared/model/thread-visibility";
+import { updateThreadVisibility } from "@scout/shared/model/thread-visibility";
 import { userOnlyAction } from "@/lib/auth-server";
 import { db } from "@/lib/db";
-import { ThreadVisibility } from "@terragon/shared/db/types";
+import { ThreadVisibility } from "@scout/shared/db/types";
 
 export const updateThreadVisibilityAction = userOnlyAction(
   async function updateThreadVisibilityAction(

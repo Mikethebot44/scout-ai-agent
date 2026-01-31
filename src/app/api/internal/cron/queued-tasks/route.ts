@@ -2,9 +2,9 @@ import type { NextRequest } from "next/server";
 import {
   getUserIdsWithThreadsReadyToProcess,
   getUserIdsWithThreadsStuckInQueue,
-} from "@terragon/shared/model/threads";
+} from "@scout/shared/model/threads";
 import { db } from "@/lib/db";
-import { env } from "@terragon/env/apps-www";
+import { env } from "@scout/env/apps-www";
 import { internalPOST } from "@/server-lib/internal-request";
 import { sandboxCreationRateLimit } from "@/lib/rate-limit";
 import { getPostHogServer } from "@/lib/posthog-server";

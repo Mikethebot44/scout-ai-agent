@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import { ThreadInfo, ThreadInfoFull, ThreadVisibility } from "@terragon/shared";
+import { ThreadInfo, ThreadInfoFull, ThreadVisibility } from "@scout/shared";
 import { useCallback, useState, useEffect, memo } from "react";
 import {
   Terminal,
@@ -27,7 +27,7 @@ import { useUpdateThreadVisibilityMutation } from "@/queries/thread-mutations";
 import { useIsSmallScreen } from "@/hooks/useMediaQuery";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { ThreadMenuDropdown } from "../thread-menu-dropdown";
-import { publicDocsUrl } from "@terragon/env/next-public";
+import { publicDocsUrl } from "@scout/env/next-public";
 import { useAtomValue } from "jotai";
 import { userSettingsAtom } from "@/atoms/user";
 import posthog from "posthog-js";

@@ -5481,7 +5481,7 @@ var StdioServerTransport = class {
 // src/index.ts
 var server = new Server(
   {
-    name: "terragon-mcp-server",
+    name: "scout-mcp-server",
     version: "0.0.1"
   },
   {

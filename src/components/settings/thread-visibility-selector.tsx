@@ -1,4 +1,4 @@
-import { ThreadVisibility } from "@terragon/shared";
+import { ThreadVisibility } from "@scout/shared";
 import { Lock, Globe, Users } from "lucide-react";
 import {
   Select,

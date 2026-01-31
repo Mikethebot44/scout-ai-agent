@@ -3,7 +3,7 @@ import type {
   DBMessage,
   DBUserMessage,
   DBSystemMessage,
-} from "@terragon/shared";
+} from "@scout/shared";
 import {
   getPendingToolCallErrorMessages,
   getUserMessageToSend,

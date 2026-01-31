@@ -5,10 +5,10 @@ import { db } from "@/lib/db";
 import {
   getEnvironment,
   updateEnvironment,
-} from "@terragon/shared/model/environments";
-import { encryptValue } from "@terragon/utils/encryption";
-import { env } from "@terragon/env/apps-www";
-import { McpConfig, validateMcpConfig } from "@terragon/sandbox/mcp-config";
+} from "@scout/shared/model/environments";
+import { encryptValue } from "@scout/utils/encryption";
+import { env } from "@scout/env/apps-www";
+import { McpConfig, validateMcpConfig } from "@scout/sandbox/mcp-config";
 import { getPostHogServer } from "@/lib/posthog-server";
 import { UserFacingError } from "@/lib/server-actions";
 

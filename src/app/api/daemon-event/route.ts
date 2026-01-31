@@ -1,7 +1,7 @@
 import { getUserIdOrNullFromDaemonToken } from "@/lib/auth-server";
 import { handleDaemonEvent } from "@/server-lib/handle-daemon-event";
-import { DaemonEventAPIBody } from "@terragon/daemon/shared";
-import { LEGACY_THREAD_CHAT_ID } from "@terragon/shared/utils/thread-utils";
+import { DaemonEventAPIBody } from "@scout/daemon/shared";
+import { LEGACY_THREAD_CHAT_ID } from "@scout/shared/utils/thread-utils";
 
 export async function POST(request: Request) {
   const json: DaemonEventAPIBody = await request.json();

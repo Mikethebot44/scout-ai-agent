@@ -1,7 +1,7 @@
 {
-  "name": "@terragon/utils",
+  "name": "@scout/utils",
   "version": "1.0.0",
-  "description": "Shared utility functions for the terragon monorepo",
+  "description": "Shared utility functions for the scout monorepo",
   "type": "module",
   "exports": {
     "./error": "./src/error.ts",
@@ -17,7 +17,7 @@
   },
   "packageManager": "pnpm@10.14.0",
   "devDependencies": {
-    "@terragon/tsconfig": "workspace:*",
+    "@scout/tsconfig": "workspace:*",
     "@types/node": "^22.15.29",
     "typescript": "^5.8.3",
     "vitest": "^3.1.4"

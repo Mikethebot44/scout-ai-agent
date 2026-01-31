@@ -1,9 +1,9 @@
 import { db } from "@/lib/db";
-import { getUserSettings } from "@terragon/shared/model/user";
-import type { AccessTier } from "@terragon/shared/db/types";
+import { getUserSettings } from "@scout/shared/model/user";
+import type { AccessTier } from "@scout/shared/db/types";
 import { getAccessInfoForUser } from "./subscription";
-import { getFeatureFlagForUser } from "@terragon/shared/model/feature-flags";
-import type { SandboxSize } from "@terragon/types/sandbox";
+import { getFeatureFlagForUser } from "@scout/shared/model/feature-flags";
+import type { SandboxSize } from "@scout/types/sandbox";
 
 const productionMaxConcurrentTasks = 3;
 const developmentMaxConcurrentTasks = 3;

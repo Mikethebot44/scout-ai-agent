@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { UIRichTextPart } from "@terragon/shared";
+import { UIRichTextPart } from "@scout/shared";
 import {
   mentionPillStyle,
   linkClasses,

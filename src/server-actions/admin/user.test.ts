@@ -3,11 +3,11 @@ import { db } from "@/lib/db";
 import {
   createTestUser,
   createTestThread,
-} from "@terragon/shared/model/test-helpers";
+} from "@scout/shared/model/test-helpers";
 import { mockLoggedInUser } from "@/test-helpers/mock-next";
 import { deleteUser } from "./user";
-import { getUser } from "@terragon/shared/model/user";
-import * as schema from "@terragon/shared/db/schema";
+import { getUser } from "@scout/shared/model/user";
+import * as schema from "@scout/shared/db/schema";
 import { eq } from "drizzle-orm";
 
 describe("deleteUser", () => {

@@ -1,7 +1,7 @@
 "use server";
 
-import { getThreadsAndPRsStats } from "@terragon/shared/model/threads";
-import { validateTimezone } from "@terragon/shared/utils/timezone";
+import { getThreadsAndPRsStats } from "@scout/shared/model/threads";
+import { validateTimezone } from "@scout/shared/utils/timezone";
 import { getUserInfoOrNull, userOnlyAction } from "@/lib/auth-server";
 import { addDays, format, subDays, set as setDateValues } from "date-fns";
 import { db } from "@/lib/db";

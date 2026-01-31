@@ -1,29 +1,29 @@
 export const testimonialColumn1 = [
   {
     nameOrRole: "David Young",
-    photo: "https://cdn.terragonlabs.com/david-young-hBxz.webp",
+    photo: "https://cdn.scoutlabs.com/david-young-hBxz.webp",
     quote:
-      "Just wanted to drop a thank you in here. I honestly cannot tell you how much more I'm getting to use Claude Code because of Terragon. And the workflow is actually very good. The fact that this is this good in public beta makes me excited about what's to come in the future. Please start taking my money 🙂",
+      "Just wanted to drop a thank you in here. I honestly cannot tell you how much more I'm getting to use Claude Code because of Scout. And the workflow is actually very good. The fact that this is this good in public beta makes me excited about what's to come in the future. Please start taking my money 🙂",
   },
   {
     nameOrRole: "Avinash",
-    photo: "https://cdn.terragonlabs.com/avinash-8EfU.webp",
+    photo: "https://cdn.scoutlabs.com/avinash-8EfU.webp",
     quote:
-      "I discovered Terragon 2 days back, and I am blown away by how smooth it went for a brand-new tool. Great job, guys!!\n\nEspecially when I ran out of credits at 1 AM and it queued my task and ran at 4 AM 🤯\n\nI woke up to a PR",
+      "I discovered Scout 2 days back, and I am blown away by how smooth it went for a brand-new tool. Great job, guys!!\n\nEspecially when I ran out of credits at 1 AM and it queued my task and ran at 4 AM 🤯\n\nI woke up to a PR",
   },
   {
     nameOrRole: "Akhilesh",
     handle: "@akhi20187",
-    photo: "https://cdn.terragonlabs.com/Akhilesh-p0EA.webp",
+    photo: "https://cdn.scoutlabs.com/Akhilesh-p0EA.webp",
     quote:
-      "just tried @terragonlabs -- you folks have built something awesome!!",
+      "just tried @scoutlabs -- you folks have built something awesome!!",
   },
   {
     nameOrRole: "Michael",
     handle: "@thisismichael13",
-    photo: "https://cdn.terragonlabs.com/Michael-dA7o.webp",
+    photo: "https://cdn.scoutlabs.com/Michael-dA7o.webp",
     verified: true,
-    quote: "Terragon has been really good. Huge fan of it.",
+    quote: "Scout has been really good. Huge fan of it.",
   },
   {
     quote:
@@ -35,9 +35,9 @@ export const testimonialColumn1 = [
 export const testimonialColumn2 = [
   {
     nameOrRole: "Ben W",
-    photo: "https://cdn.terragonlabs.com/ben-w-1xQo.webp",
+    photo: "https://cdn.scoutlabs.com/ben-w-1xQo.webp",
     quote:
-      "Terragon has done nothing short of blow me away every step along the journey. For what is a relatively complex infrastructure under the hood, you guys made it simple beyond words.\n\nI'm genuinely blown away that this isn't the #1 tool for AI engineers, I'd invest if it was possible 🤣",
+      "Scout has done nothing short of blow me away every step along the journey. For what is a relatively complex infrastructure under the hood, you guys made it simple beyond words.\n\nI'm genuinely blown away that this isn't the #1 tool for AI engineers, I'd invest if it was possible 🤣",
   },
   {
     quote:
@@ -52,10 +52,10 @@ export const testimonialColumn2 = [
   {
     nameOrRole: "Michael Jupp",
     handle: "@michael_jupp4",
-    photo: "https://cdn.terragonlabs.com/michael-jupp-8Rri.webp",
+    photo: "https://cdn.scoutlabs.com/michael-jupp-8Rri.webp",
     verified: true,
     quote:
-      "anybody else found out about terragon for claude code? its awesome! lets you run claude code in the cloud and queue tasks.\n\nliteral lifesaver @terragonlabs",
+      "anybody else found out about scout for claude code? its awesome! lets you run claude code in the cloud and queue tasks.\n\nliteral lifesaver @scoutlabs",
   },
 ];
 
@@ -63,41 +63,41 @@ export const testimonialColumn3 = [
   {
     nameOrRole: "Robin Ebers",
     handle: "@itsbyrobin",
-    photo: "https://cdn.terragonlabs.com/robin-ebers-yasG.webp",
+    photo: "https://cdn.scoutlabs.com/robin-ebers-yasG.webp",
     verified: true,
     quote:
-      "Background tasks for Claude Code\n\nIt's real, and made by @terragonlabs\n\nI've been using it a lot today and I really like it. Currently free, not sponsored, and uses your Claude Max subscription. It even shows you stats of how much $$ you've blasted though and how much code it wrote for you.",
+      "Background tasks for Claude Code\n\nIt's real, and made by @scoutlabs\n\nI've been using it a lot today and I really like it. Currently free, not sponsored, and uses your Claude Max subscription. It even shows you stats of how much $$ you've blasted though and how much code it wrote for you.",
   },
   {
     nameOrRole: "Lotfi",
     handle: "@DrifLotfi",
-    photo: "https://cdn.terragonlabs.com/Lotfi-67HH.webp",
+    photo: "https://cdn.scoutlabs.com/Lotfi-67HH.webp",
     verified: true,
     quote:
-      "use Terragon labs .. let's you run Claude code background agents in the cloud…. Using your Claude code subscription. I spun up 5 agents form my phone yesterday and they built my entire website for me by the time I got home!",
+      "use Scout labs .. let's you run Claude code background agents in the cloud…. Using your Claude code subscription. I spun up 5 agents form my phone yesterday and they built my entire website for me by the time I got home!",
   },
   {
     nameOrRole: "David Boyle",
     handle: "@beglen",
-    photo: "https://cdn.terragonlabs.com/David-Boyle-nhWh.webp",
+    photo: "https://cdn.scoutlabs.com/David-Boyle-nhWh.webp",
     verified: true,
     quote:
-      "Use Claude Code on web - via @terragonlabs - can spin up multiple insta cues and manage them from phone on the go. A godsend",
+      "Use Claude Code on web - via @scoutlabs - can spin up multiple insta cues and manage them from phone on the go. A godsend",
   },
   {
     nameOrRole: "Unofficial messanger",
     handle: "@unofficialmsgr",
-    photo: "https://cdn.terragonlabs.com/Unofficial-messanger-KIaX.webp",
+    photo: "https://cdn.scoutlabs.com/Unofficial-messanger-KIaX.webp",
     verified: true,
     quote:
-      "Mind-blown by this! 🚀 Can't wait to see how it transforms workflows. Way to go, @terragonlabs!",
+      "Mind-blown by this! 🚀 Can't wait to see how it transforms workflows. Way to go, @scoutlabs!",
   },
   {
     nameOrRole: "Felipe Coury 🦀",
     handle: "@fcoury",
-    photo: "https://cdn.terragonlabs.com/Felipe-Coury-gbLM.webp",
+    photo: "https://cdn.scoutlabs.com/Felipe-Coury-gbLM.webp",
     verified: true,
     quote:
-      "Been using @terragonlabs to spin up background agents for Claude Code and it's been great! 🌿\n\nGive it a try, it connects directly to your GitHub account and run tasks in the background, opening a PR when it's done. It's been working very well for me.",
+      "Been using @scoutlabs to spin up background agents for Claude Code and it's been great! 🌿\n\nGive it a try, it connects directly to your GitHub account and run tasks in the background, opening a PR when it's done. It's been working very well for me.",
   },
 ];

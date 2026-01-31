@@ -1,18 +1,18 @@
 import { db } from "@/lib/db";
-import { retryAsync } from "@terragon/utils/retry";
+import { retryAsync } from "@scout/utils/retry";
 import { refreshAccessToken } from "@/lib/claude-oauth";
-import { env } from "@terragon/env/apps-www";
-import { updateUserFlags } from "@terragon/shared/model/user-flags";
+import { env } from "@scout/env/apps-www";
+import { updateUserFlags } from "@scout/shared/model/user-flags";
 import {
   ClaudeOrganizationType,
   ClaudeAgentProviderMetadata,
-} from "@terragon/shared";
+} from "@scout/shared";
 import {
   getValidAccessTokenForCredential,
   insertAgentProviderCredentials,
   getAgentProviderCredentialsDecrypted,
   getAgentProviderCredentialsDecryptedById,
-} from "@terragon/shared/model/agent-provider-credentials";
+} from "@scout/shared/model/agent-provider-credentials";
 
 const API_BASE_URL = "https://api.anthropic.com";
 

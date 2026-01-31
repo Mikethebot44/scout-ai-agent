@@ -2,7 +2,7 @@ import {
   SetupResult,
   setupTestContainers,
   teardownTestContainers,
-} from "@terragon/dev-env/test-global-setup";
+} from "@scout/dev-env/test-global-setup";
 import path from "path";
 import { execSync } from "child_process";
 

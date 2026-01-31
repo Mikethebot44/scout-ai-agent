@@ -1,5 +1,5 @@
 import { saveClaudeTokens } from "@/agent/msg/claudeCredentials";
-import { ClaudeMessage } from "@terragon/daemon/shared";
+import { ClaudeMessage } from "@scout/daemon/shared";
 
 export async function saveClaudeTokensForTest({ userId }: { userId: string }) {
   await saveClaudeTokens({

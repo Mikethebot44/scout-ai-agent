@@ -126,7 +126,7 @@ export function AdminUsersList({
     link.setAttribute("href", url);
     link.setAttribute(
       "download",
-      `terragon-users-${format(new Date(), "yyyy-MM-dd-HHmmss")}.csv`,
+      `scout-users-${format(new Date(), "yyyy-MM-dd-HHmmss")}.csv`,
     );
     link.style.visibility = "hidden";
     document.body.appendChild(link);
@@ -143,7 +143,7 @@ export function AdminUsersList({
     link.href = url;
     link.setAttribute(
       "download",
-      `terragon-users-loops-${format(new Date(), "yyyy-MM-dd-HHmmss")}.csv`,
+      `scout-users-loops-${format(new Date(), "yyyy-MM-dd-HHmmss")}.csv`,
     );
     link.style.visibility = "hidden";
     document.body.appendChild(link);

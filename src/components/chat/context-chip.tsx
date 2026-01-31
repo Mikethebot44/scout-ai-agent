@@ -1,5 +1,5 @@
 import React from "react";
-import { MAX_CONTEXT_TOKENS } from "@terragon/shared";
+import { MAX_CONTEXT_TOKENS } from "@scout/shared";
 import { AlertTriangle } from "lucide-react";
 
 interface ContextChipProps {

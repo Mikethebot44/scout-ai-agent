@@ -1,4 +1,4 @@
-import { ThreadInfo } from "@terragon/shared/db/types";
+import { ThreadInfo } from "@scout/shared/db/types";
 import { isAgentWorking } from "@/agent/thread-status";
 
 export type MinimalThreadInfoForSorting = Pick<

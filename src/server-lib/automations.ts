@@ -5,10 +5,10 @@ import {
   getAutomation,
   incrementAutomationRunCount,
   getAutomationCount,
-} from "@terragon/shared/model/automations";
-import { assertNever } from "@terragon/shared/utils";
-import { Automation, AutomationInsert } from "@terragon/shared/db/types";
-import { validateCronExpression } from "@terragon/shared/automations/cron";
+} from "@scout/shared/model/automations";
+import { assertNever } from "@scout/shared/utils";
+import { Automation, AutomationInsert } from "@scout/shared/db/types";
+import { validateCronExpression } from "@scout/shared/automations/cron";
 import { convertToPlainText } from "@/lib/db-message-helpers";
 import {
   PullRequestTriggerConfig,
@@ -16,8 +16,8 @@ import {
   IssueTriggerConfig,
   GitHubMentionTriggerConfig,
   AutomationTriggerType,
-} from "@terragon/shared/automations";
-import { AccessTier, DBUserMessage } from "@terragon/shared";
+} from "@scout/shared/automations";
+import { AccessTier, DBUserMessage } from "@scout/shared";
 import {
   PullRequestEvent,
   IssueEvent,
@@ -28,7 +28,7 @@ import {
   parseRepoFullName,
   getIsPRAuthor,
 } from "@/lib/github";
-import { getThreads } from "@terragon/shared/model/threads";
+import { getThreads } from "@scout/shared/model/threads";
 import { archiveAndStopThread } from "./archive-thread";
 import {
   createGitHubCheckRunForAutomation,
@@ -37,7 +37,7 @@ import {
 import { getAccessInfoForUser } from "@/lib/subscription";
 import { SUBSCRIPTION_MESSAGES } from "@/lib/subscription-msgs";
 import { getMaxAutomationsForUser } from "@/lib/subscription-tiers";
-import { getFeatureFlagForUser } from "@terragon/shared/model/feature-flags";
+import { getFeatureFlagForUser } from "@scout/shared/model/feature-flags";
 import { UserFacingError } from "@/lib/server-actions";
 
 export async function runAutomation({

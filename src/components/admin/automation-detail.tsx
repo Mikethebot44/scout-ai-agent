@@ -1,8 +1,8 @@
 "use client";
 
 import { usePageBreadcrumbs } from "@/hooks/usePageBreadcrumbs";
-import { Automation } from "@terragon/shared/db/types";
-import { cronToHumanReadable } from "@terragon/shared/automations/cron";
+import { Automation } from "@scout/shared/db/types";
+import { cronToHumanReadable } from "@scout/shared/automations/cron";
 import { convertToPlainText } from "@/lib/db-message-helpers";
 import { SingleEntityTable } from "./single-entity-table";
 

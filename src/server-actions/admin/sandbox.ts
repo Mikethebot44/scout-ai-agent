@@ -1,15 +1,15 @@
 "use server";
 
 import { adminOnly } from "@/lib/auth-server";
-import { User } from "@terragon/shared";
+import { User } from "@scout/shared";
 import { withSandboxResource } from "@/agent/sandbox-resource";
-import { getSandboxOrNull } from "@terragon/sandbox";
-import { getDaemonLogs } from "@terragon/sandbox/daemon";
+import { getSandboxOrNull } from "@scout/sandbox";
+import { getDaemonLogs } from "@scout/sandbox/daemon";
 import { waitUntil } from "@vercel/functions";
 import { maybeHibernateSandboxInternal } from "@/agent/sandbox";
 import Sandbox from "@e2b/code-interpreter";
-import type { SandboxProvider } from "@terragon/types/sandbox";
-import type { ISandboxSession } from "@terragon/sandbox/types";
+import type { SandboxProvider } from "@scout/types/sandbox";
+import type { ISandboxSession } from "@scout/sandbox/types";
 
 export const getSandboxDaemonLogs = adminOnly(
   async function getSandboxDaemonLogs(

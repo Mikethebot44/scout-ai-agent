@@ -1,5 +1,5 @@
 {
-  "name": "@terragon/sandbox",
+  "name": "@scout/sandbox",
   "version": "1.0.0",
   "main": "./src/index.ts",
   "exports": {
@@ -28,17 +28,17 @@
     "@daytonaio/sdk": "0.115.2",
     "@e2b/code-interpreter": "^1.2.0-beta.4",
     "@iarna/toml": "^3.0.0",
-    "@terragon/agent": "workspace:*",
-    "@terragon/bundled": "workspace:*",
-    "@terragon/daemon": "workspace:*",
-    "@terragon/sandbox-image": "workspace:*",
-    "@terragon/utils": "workspace:*",
+    "@scout/agent": "workspace:*",
+    "@scout/bundled": "workspace:*",
+    "@scout/daemon": "workspace:*",
+    "@scout/sandbox-image": "workspace:*",
+    "@scout/utils": "workspace:*",
     "nanoid": "^3.3.8",
     "zod": "4.1.11"
   },
   "devDependencies": {
-    "@terragon/tsconfig": "workspace:*",
-    "@terragon/types": "workspace:*",
+    "@scout/tsconfig": "workspace:*",
+    "@scout/types": "workspace:*",
     "@types/node": "^22.5.5",
     "typescript": "^5.8.2",
     "vitest": "^3.1.4"

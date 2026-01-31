@@ -2,7 +2,7 @@ import { DB } from "../db";
 import * as schema from "../db/schema";
 import { and, eq, getTableColumns } from "drizzle-orm";
 import { publishBroadcastUserMessage } from "../broadcast-server";
-import { decryptValue } from "@terragon/utils/encryption";
+import { decryptValue } from "@scout/utils/encryption";
 
 export function getEnvironments({
   db,

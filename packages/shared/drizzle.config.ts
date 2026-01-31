@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { defineConfig } from "drizzle-kit";
-import { env } from "@terragon/env/pkg-shared";
+import { env } from "@scout/env/pkg-shared";
 
 export default defineConfig({
   out: "./drizzle",

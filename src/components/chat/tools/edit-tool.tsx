@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AllToolParts } from "@terragon/shared";
+import { AllToolParts } from "@scout/shared";
 import { EditDiffView } from "@/components/shared/diff-view";
 import {
   GenericToolPart,

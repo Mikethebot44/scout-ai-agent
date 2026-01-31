@@ -1,6 +1,6 @@
 {
-  "name": "Terragon",
-  "short_name": "Terragon",
+  "name": "Scout",
+  "short_name": "Scout",
   "description": "AI-powered coding assistant platform",
   "start_url": "/",
   "display": "standalone",

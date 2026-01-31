@@ -1,7 +1,7 @@
 {
-  "name": "@terragon/env",
+  "name": "@scout/env",
   "version": "1.0.0",
-  "description": "Package to manage environment variables across the terragon monorepo",
+  "description": "Package to manage environment variables across the scout monorepo",
   "type": "module",
   "exports": {
     "./apps-www": "./src/apps-www.ts",
@@ -21,7 +21,7 @@
     "envsafe": "^2.0.3"
   },
   "devDependencies": {
-    "@terragon/tsconfig": "workspace:*",
+    "@scout/tsconfig": "workspace:*",
     "@types/node": "^22.15.29",
     "typescript": "^5.8.3"
   }

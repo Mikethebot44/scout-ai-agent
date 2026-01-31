@@ -1,4 +1,4 @@
-import { ThreadChatInsert, ThreadStatus } from "@terragon/shared";
+import { ThreadChatInsert, ThreadStatus } from "@scout/shared";
 import { createMachine, transition } from "xstate";
 
 export type ThreadEvent =

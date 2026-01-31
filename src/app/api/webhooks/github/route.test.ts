@@ -9,8 +9,8 @@ import { handleAppMention } from "./handle-app-mention";
 import {
   createTestUser,
   createTestGitHubPR,
-} from "@terragon/shared/model/test-helpers";
-import { env } from "@terragon/env/apps-www";
+} from "@scout/shared/model/test-helpers";
+import { env } from "@scout/env/apps-www";
 
 vi.mock("./handle-app-mention", () => ({
   handleAppMention: vi.fn(),

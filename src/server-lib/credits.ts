@@ -1,10 +1,10 @@
-import type { DB } from "@terragon/shared/db";
-import * as schema from "@terragon/shared/db/schema";
+import type { DB } from "@scout/shared/db";
+import * as schema from "@scout/shared/db/schema";
 import { sql, isNull, and, eq } from "drizzle-orm";
 import {
   getUserCredits,
   grantUserCredits,
-} from "@terragon/shared/model/credits";
+} from "@scout/shared/model/credits";
 
 const SIGNUP_BONUS_AMOUNT_CENTS = 1000; // $10.00
 

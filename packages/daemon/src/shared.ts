@@ -1,9 +1,9 @@
 import * as z from "zod/v4";
 import { Anthropic } from "@anthropic-ai/sdk";
-import { AIAgentSchema } from "@terragon/agent/types";
+import { AIAgentSchema } from "@scout/agent/types";
 
-export const defaultPipePath = "/tmp/terragon-daemon.pipe";
-export const defaultUnixSocketPath = "/tmp/terragon-daemon.sock";
+export const defaultPipePath = "/tmp/scout-daemon.pipe";
+export const defaultUnixSocketPath = "/tmp/scout-daemon.sock";
 
 // Increment this when you make a breaking change to the daemon.
 // 1: Supports the --version flag

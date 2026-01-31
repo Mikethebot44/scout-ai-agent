@@ -1,10 +1,10 @@
 import { getAdminUserOrThrow } from "@/lib/auth-server";
 import { db } from "@/lib/db";
-import * as schema from "@terragon/shared/db/schema";
+import * as schema from "@scout/shared/db/schema";
 import { inArray, and, gte, countDistinct, eq, sql } from "drizzle-orm";
 import { AbuseDetectionTable } from "./table";
 import { getUserListForAdminPage, UserForAdminPage } from "@/server-lib/admin";
-import { BILLABLE_EVENT_TYPES } from "@terragon/shared/model/credits";
+import { BILLABLE_EVENT_TYPES } from "@scout/shared/model/credits";
 
 export interface UserWithSharedRepos extends UserForAdminPage {
   sharedRepos: string[];

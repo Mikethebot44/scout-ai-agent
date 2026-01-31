@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { AllToolParts, DBMessage } from "@terragon/shared";
+import { AllToolParts, DBMessage } from "@scout/shared";
 import { GenericToolPart } from "./generic-ui";
 import { TextPart } from "../text-part";
 import { Button } from "../../ui/button";
