@@ -17,6 +17,10 @@ export async function internalPOST(path: string) {
 
 export async function isAnthropicDownPOST() {
   console.log(`isAnthropicDownPOST`);
+  if (!env.IS_ANTHROPIC_DOWN_URL || !env.IS_ANTHROPIC_DOWN_API_SECRET) {
+    console.log("IS_ANTHROPIC_DOWN_URL or IS_ANTHROPIC_DOWN_API_SECRET not configured, skipping");
+    return;
+  }
   try {
     await fetch(`${env.IS_ANTHROPIC_DOWN_URL}/api/internal/report-issue`, {
       method: "POST",

@@ -29,9 +29,11 @@ export const env = envsafe({
   }),
   IS_ANTHROPIC_DOWN_URL: str({
     devDefault: devDefaultIsAnthropicDownUrl,
+    default: "",
   }),
   IS_ANTHROPIC_DOWN_API_SECRET: str({
     devDefault: devDefaultIsAnthropicDownApiSecret,
+    default: "",
   }),
   // Used to authenticate internal request between services (eg. www -> broadcast)
   INTERNAL_SHARED_SECRET: str({
