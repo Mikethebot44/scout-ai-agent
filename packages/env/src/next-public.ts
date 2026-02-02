@@ -1,11 +1,13 @@
 import { devDefaultAppUrl, devDefaultBroadcastPort } from "./common";
 
-export function publicBroadcastUrl() {
+export function publicBroadcastUrl(): string | null {
   if (process.env.NODE_ENV === "development") {
-    return (
-      process.env.NEXT_PUBLIC_BROADCAST_URL ??
-      `http://localhost:${devDefaultBroadcastPort}`
-    );
+    // In dev, only connect to broadcast if explicitly configured
+    if (process.env.NEXT_PUBLIC_BROADCAST_URL) {
+      return process.env.NEXT_PUBLIC_BROADCAST_URL;
+    }
+    // Return null to disable broadcast in dev when not configured
+    return null;
   }
   if (!process.env.NEXT_PUBLIC_BROADCAST_URL) {
     throw new Error("NEXT_PUBLIC_BROADCAST_URL is not set");
@@ -34,15 +36,14 @@ export function publicAppUrl() {
   return process.env.NEXT_PUBLIC_APP_URL;
 }
 
-export function publicBroadcastHost() {
+export function publicBroadcastHost(): string | null {
   if (process.env.NODE_ENV === "development") {
+    // In dev, only connect to broadcast if explicitly configured
     if (process.env.NEXT_PUBLIC_BROADCAST_HOST) {
       return process.env.NEXT_PUBLIC_BROADCAST_HOST;
     }
-    if (typeof window !== "undefined" && window.location.hostname) {
-      return `${window.location.hostname}:${devDefaultBroadcastPort}`;
-    }
-    return `localhost:${devDefaultBroadcastPort}`;
+    // Return null to disable broadcast in dev when not configured
+    return null;
   }
   if (!process.env.NEXT_PUBLIC_BROADCAST_HOST) {
     throw new Error("NEXT_PUBLIC_BROADCAST_HOST is not set");

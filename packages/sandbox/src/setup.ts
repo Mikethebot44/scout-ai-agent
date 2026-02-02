@@ -18,6 +18,9 @@ import { buildCodexToml } from "./agents/codex-config";
 import { getEnv } from "./env";
 import path from "path";
 
+// Use posix paths for sandbox commands (Linux)
+const posixPath = path.posix;
+
 async function createNewBranch({
   session,
   threadName,
@@ -251,11 +254,11 @@ async function updateAgentFilesShared({
     content: string;
   }>;
 }) {
-  const configDirAbsolutePath = path.join(homeDir, agentConfigDir);
+  const configDirAbsolutePath = posixPath.join(homeDir, agentConfigDir);
   await session.runCommand(`mkdir -p ${configDirAbsolutePath}`, { cwd: "/" });
 
   if (agentCredentialsFilename) {
-    const credentialsPath = path.join(
+    const credentialsPath = posixPath.join(
       configDirAbsolutePath,
       agentCredentialsFilename,
     );
@@ -271,7 +274,7 @@ async function updateAgentFilesShared({
     }
   }
 
-  const customSystemPromptPath = path.join(
+  const customSystemPromptPath = posixPath.join(
     configDirAbsolutePath,
     customSystemPromptFilename,
   );
@@ -288,9 +291,9 @@ async function updateAgentFilesShared({
   }
   if (otherFiles) {
     for (const file of otherFiles) {
-      const filePath = path.join(configDirAbsolutePath, file.filename);
-      if (path.dirname(filePath) !== configDirAbsolutePath) {
-        const dirPath = path.dirname(filePath);
+      const filePath = posixPath.join(configDirAbsolutePath, file.filename);
+      if (posixPath.dirname(filePath) !== configDirAbsolutePath) {
+        const dirPath = posixPath.dirname(filePath);
         console.log("Creating directory", dirPath);
         await session.runCommand(`mkdir -p ${dirPath}`, { cwd: "/" });
       }

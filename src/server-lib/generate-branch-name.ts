@@ -17,7 +17,8 @@ export async function generateBranchName(
   // Do not modify the provided prefix; use it as-is
   const prefix = branchPrefix;
   // If no thread name provided, skip AI generation and return simple unique branch name
-  if (!threadName) {
+  // Also skip if OPENAI_API_KEY is not set or empty
+  if (!threadName || !process.env.OPENAI_API_KEY) {
     return generateRandomBranchName(prefix);
   }
   // In test environment, skip AI generation and return simple unique branch name

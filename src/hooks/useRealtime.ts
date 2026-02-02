@@ -25,10 +25,15 @@ function getOrCreatePartySocket({
   party: string;
   channel: string;
   authToken: string;
-}) {
+}): PartySocket | null {
+  const host = publicBroadcastHost();
+  if (!host) {
+    // Broadcast disabled - return null
+    return null;
+  }
   if (!partykitByChannel[channel]) {
     const socket = new PartySocket({
-      host: publicBroadcastHost(),
+      host,
       party,
       room: channel,
       maxRetries: 10,

@@ -666,5 +666,23 @@
     "provider": "e2b",
     "size": "large",
     "createdAt": "2025-12-20T16:07:42.884Z"
+  },
+  {
+    "name": "terry-vCPU-2-RAM-4GB-2026-02-01-01-10-54-25wtbo",
+    "dockerfileHash": "262b2cdaaae6c4a5a3893e78437fb51869b2a32fe475fb6261cc9ccbd51c77f1",
+    "cpuCount": 2,
+    "memoryGB": 4,
+    "provider": "e2b",
+    "size": "small",
+    "createdAt": "2026-02-01T01:37:39.999Z"
+  },
+  {
+    "name": "terry-vCPU-4-RAM-8GB-2026-02-01-01-37-44-xzq3lc",
+    "dockerfileHash": "262b2cdaaae6c4a5a3893e78437fb51869b2a32fe475fb6261cc9ccbd51c77f1",
+    "cpuCount": 4,
+    "memoryGB": 8,
+    "provider": "e2b",
+    "size": "large",
+    "createdAt": "2026-02-01T01:39:36.059Z"
   }
 ]

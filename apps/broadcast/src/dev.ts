@@ -15,8 +15,9 @@ function cleanLine(line: string) {
 }
 
 function main() {
-  const child = childProcess.spawn("pnpm", ["partykit", "dev"], {
+  const child = childProcess.spawn("npx", ["partykit", "dev"], {
     stdio: ["pipe", "pipe", "pipe"],
+    shell: true,
   });
 
   child.stdout.on("data", (data) => {
